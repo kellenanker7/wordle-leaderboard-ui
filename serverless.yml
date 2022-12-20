@@ -11,8 +11,21 @@ plugins:
   - serverless-finch
 
 custom:
+  domainName: kellenanker.com
   client:
-    bucketName: wordle.kellenanker.com
+    bucketName: wordle.${self:custom.domainName}
     distributionFolder: build
     indexDocument: index.html
     errorDocument: index.html
+
+resources:
+  Resources:
+    WebsiteDomain:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        HostedZoneName: ${self:custom.domainName}.
+        Name: wordle.${self:custom.domainName}
+        ResourceRecords:
+          - wordle.${self:custom.domainName}.s3-website-us-east-1.amazonaws.com
+        TTL: 300
+        Type: CNAME
