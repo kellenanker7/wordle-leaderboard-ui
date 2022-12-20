@@ -7,7 +7,7 @@ const Leaderboard = () => {
 
   useEffect(() => {
     setError(false);
-    fetch("https://wordle.kellenanker.com/topten")
+    fetch("https://api.wordle.kellenanker.com/topten")
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {

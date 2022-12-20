@@ -1,0 +1,18 @@
+service: wordle-leaderboard-ui
+frameworkVersion: "3"
+configValidationMode: error
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: live
+  region: us-east-1
+
+plugins:
+  - serverless-finch
+
+custom:
+  client:
+    bucketName: wordle.kellenanker.com
+    distributionFolder: build
+    indexDocument: index.html
+    errorDocument: index.html
