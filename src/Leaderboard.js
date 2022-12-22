@@ -13,11 +13,8 @@ const Leaderboard = () => {
       .catch((e) => {
         setError(true);
         console.error(e);
-      })
-      .finally(() => setRefresh(false));
+      });
   }, [refresh]);
-
-  console.log(data);
 
   return (
     <div>
@@ -41,7 +38,7 @@ const Leaderboard = () => {
           })}
         </tbody>
       </table>
-      <button onClick={() => setRefresh(true)}>Refresh</button>
+      <button onClick={() => setRefresh(!refresh)}>Refresh</button>
     </div>
   );
 };
