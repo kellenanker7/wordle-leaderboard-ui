@@ -7,7 +7,7 @@ const Leaderboard = () => {
 
   useEffect(() => {
     setError(false);
-    fetch("https://api.wordle.kellenanker.com/topten")
+    fetch("https://api.wordle.kellenanker.com/leaderboard")
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -16,6 +16,8 @@ const Leaderboard = () => {
       })
       .finally(() => setRefresh(false));
   }, [refresh]);
+
+  console.log(data);
 
   return (
     <div>
@@ -32,8 +34,8 @@ const Leaderboard = () => {
           {data.map((e, i) => {
             return (
               <tr key={i}>
-                <td>{e.number}</td>
-                <td>{e.avg}</td>
+                <td>{e.PhoneNumber}</td>
+                <td>{e.Average}</td>
               </tr>
             );
           })}
