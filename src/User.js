@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const Leaderboard = () => {
+const User = () => {
+  const { user } = useParams();
   const [data, setData] = useState([]);
   const [inProgress, setInProgress] = useState(false);
   const [error, setError] = useState(false);
@@ -11,7 +12,7 @@ const Leaderboard = () => {
     setInProgress(true);
     setError(false);
 
-    fetch("https://api.wordle.kellenanker.com/leaderboard")
+    fetch(`https://api.wordle.kellenanker.com/user/${user}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -23,33 +24,32 @@ const Leaderboard = () => {
 
   return (
     <div>
-      <h1>Wordle Leaderboard</h1>
+      <h1>{user}</h1>
       {error && <p>Oh no! Something went wrong!</p>}
       <table>
         <thead>
           <tr>
-            <th>Number</th>
-            <th>Avg. Guesses</th>
+            <th>Puzzle</th>
+            <th>Guesses</th>
+            <th>Victory?</th>
           </tr>
         </thead>
         <tbody>
           {data.map((e, i) => {
+            console.log(e);
             return (
               <tr key={i}>
-                <td>
-                  <Link to={`/user/${e.PhoneNumber}`}>{e.PhoneNumber}</Link>
-                </td>
-                <td>{e.Average}</td>
+                <td>{e.PuzzleNumber}</td>
+                <td>{e.Guesses}</td>
+                <td>{e.Victory ? "yes" : "no"}</td>
               </tr>
             );
           })}
         </tbody>
       </table>
-      <button disabled={inProgress} onClick={() => setRefresh(!refresh)}>
-        Refresh
-      </button>
+      <button onClick={() => setRefresh(!refresh)}>Refresh</button>
     </div>
   );
 };
 
-export default Leaderboard;
+export default User;
