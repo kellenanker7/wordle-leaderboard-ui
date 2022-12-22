@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Table from "react-bootstrap/Table";
 
 const User = () => {
   const { user } = useParams();
@@ -25,7 +26,7 @@ const User = () => {
         6
       )}-${String(user).substring(6)}`}</h2>
       {error && <p>Oh no! Something went wrong!</p>}
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>Puzzle</th>
@@ -35,17 +36,16 @@ const User = () => {
         </thead>
         <tbody>
           {data.map((e, i) => {
-            console.log(e);
             return (
               <tr key={i}>
                 <td>{e.PuzzleNumber}</td>
                 <td>{e.Guesses}</td>
-                <td>{e.Victory ? "yes" : "no"}</td>
+                <td>{e.Victory ? "✅" : "❌"}</td>
               </tr>
             );
           })}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };

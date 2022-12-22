@@ -7,6 +7,9 @@ import App from "./App";
 import User from "./User";
 import reportWebVitals from "./reportWebVitals";
 
+// Importing the Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const Routing = () => {
   return (
     <Router>

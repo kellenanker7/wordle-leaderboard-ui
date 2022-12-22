@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Table from "react-bootstrap/Table";
 
 const Leaderboard = () => {
   const [data, setData] = useState([]);
@@ -20,7 +21,7 @@ const Leaderboard = () => {
   return (
     <div>
       {error && <p>Oh no! Something went wrong!</p>}
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>Rank</th>
@@ -46,7 +47,7 @@ const Leaderboard = () => {
             );
           })}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };

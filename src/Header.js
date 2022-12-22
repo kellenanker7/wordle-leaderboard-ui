@@ -1,11 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 
 const Header = () => {
   return (
-    <h1>
-      <Link to="/">Wordle Leaderboard</Link>
-    </h1>
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="/">Wordle Leaderboard</Navbar.Brand>
+      </Container>
+    </Navbar>
   );
 };
 
