@@ -2,11 +2,12 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <Navbar bg="light">
       <Container>
         <Navbar.Brand href="/">Wordle Leaderboard</Navbar.Brand>
+        {user && <Navbar.Brand>{user}</Navbar.Brand>}
       </Container>
     </Navbar>
   );

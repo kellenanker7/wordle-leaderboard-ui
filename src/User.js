@@ -45,8 +45,7 @@ const User = () => {
 
   return (
     <>
-      <Header />
-      <h3>{formattedNumber}</h3>
+      <Header user={formattedNumber} />
       <Container>
         <Row>
           <Col>

@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Dropdown from "react-bootstrap/Dropdown";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Header from "./Header";
 
 const Leaderboard = () => {
@@ -29,19 +32,38 @@ const Leaderboard = () => {
     <>
       <Header />
       {error && <p>Oh no! Something went wrong!</p>}
-      <Dropdown>
-        <Dropdown.Toggle size="sm" variant="Primary">
-          {limit === 0 ? "All time" : `Last ${limit} days`}
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={() => setLimit(7)}>7 days</Dropdown.Item>
-          <Dropdown.Item onClick={() => setLimit(30)}>1 month</Dropdown.Item>
-          <Dropdown.Item onClick={() => setLimit(60)}>2 months</Dropdown.Item>
-          <Dropdown.Item onClick={() => setLimit(180)}>6 months</Dropdown.Item>
-          <Dropdown.Item onClick={() => setLimit(365)}>1 year</Dropdown.Item>
-          <Dropdown.Item onClick={() => setLimit(0)}>All time</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+      <Container>
+        <Row>
+          <Col>
+            <Dropdown>
+              <Dropdown.Toggle size="sm" variant="Primary">
+                {limit === 0 ? "All time" : `Last ${limit} days`}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => setLimit(7)}>
+                  7 days
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setLimit(30)}>
+                  1 month
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setLimit(60)}>
+                  2 months
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setLimit(180)}>
+                  6 months
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setLimit(365)}>
+                  1 year
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setLimit(0)}>
+                  All time
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Col>
+          <Col>🔥 = Hot streak!</Col>
+        </Row>
+      </Container>
       {(inProgress && <Spinner animation="border"></Spinner>) || (
         <Table style={{ textAlign: "left" }} striped bordered>
           <thead>
