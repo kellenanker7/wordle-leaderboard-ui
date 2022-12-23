@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Header from "./Header";
 
-const styles = {
+const colors = {
   1: "#2EB62C",
   2: "#57C84D",
   3: "#83D475",
@@ -78,7 +78,7 @@ const User = () => {
                     style={{
                       background: !puzzle.Victory
                         ? "#F6BDC0"
-                        : styles[puzzle.Guesses],
+                        : colors[puzzle.Guesses],
                     }}
                   >
                     {puzzle.Guesses}
