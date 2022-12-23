@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Table from "react-bootstrap/Table";
+import Spinner from "react-bootstrap/Spinner";
 import Header from "./Header";
 
 const User = () => {
@@ -30,26 +31,28 @@ const User = () => {
     <div>
       <Header user={formattedNumber} />
       {error && <p>Oh no! Something went wrong!</p>}
-      <Table striped bordered>
-        <thead>
-          <tr>
-            <th>Puzzle</th>
-            <th>Guesses</th>
-            <th>Victory?</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((e, i) => {
-            return (
-              <tr key={i}>
-                <td>{e.PuzzleNumber}</td>
-                <td>{e.Guesses}</td>
-                <td>{e.Victory ? "✅" : "❌"}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      {(inProgress && <Spinner animation="border" role="status"></Spinner>) || (
+        <Table striped bordered>
+          <thead>
+            <tr>
+              <th>Puzzle</th>
+              <th>Guesses</th>
+              <th>Victory?</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((e, i) => {
+              return (
+                <tr key={i}>
+                  <td>{e.PuzzleNumber}</td>
+                  <td>{e.Guesses}</td>
+                  <td>{e.Victory ? "✅" : "❌"}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      )}
     </div>
   );
 };

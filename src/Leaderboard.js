@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
+import Spinner from "react-bootstrap/Spinner";
 import Header from "./Header";
 
 const Leaderboard = () => {
@@ -26,33 +27,35 @@ const Leaderboard = () => {
     <div>
       <Header />
       {error && <p>Oh no! Something went wrong!</p>}
-      <Table striped bordered>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Number</th>
-            <th>Avg. Guesses</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((e, i) => {
-            return (
-              <tr key={i}>
-                <td>{i + 1}</td>
-                <td>
-                  <Link to={`/user/${e.PhoneNumber}`}>{`(${String(
-                    e.PhoneNumber
-                  ).substring(0, 3)}) ${String(e.PhoneNumber).substring(
-                    3,
-                    6
-                  )}-${String(e.PhoneNumber).substring(6)}`}</Link>
-                </td>
-                <td>{e.Average}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      {(inProgress && <Spinner animation="border" role="status"></Spinner>) || (
+        <Table striped bordered>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Number</th>
+              <th>Avg. Guesses</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((e, i) => {
+              return (
+                <tr key={i}>
+                  <td>{i + 1}</td>
+                  <td>
+                    <Link to={`/user/${e.PhoneNumber}`}>{`(${String(
+                      e.PhoneNumber
+                    ).substring(0, 3)}) ${String(e.PhoneNumber).substring(
+                      3,
+                      6
+                    )}-${String(e.PhoneNumber).substring(6)}`}</Link>
+                  </td>
+                  <td>{e.Average}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      )}
     </div>
   );
 };
