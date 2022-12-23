@@ -2,18 +2,20 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
+import Dropdown from "react-bootstrap/Dropdown";
 import Header from "./Header";
 
 const Leaderboard = () => {
   const [data, setData] = useState([]);
   const [inProgress, setInProgress] = useState(false);
   const [error, setError] = useState(false);
+  const [limit, setLimit] = useState(7);
 
   useEffect(() => {
     setError(false);
     setInProgress(true);
 
-    fetch("https://api.wordle.kellenanker.com/leaderboard")
+    fetch(`https://api.wordle.kellenanker.com/leaderboard?limit=${limit}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -21,7 +23,7 @@ const Leaderboard = () => {
         console.error(e);
       })
       .finally(() => setInProgress(false));
-  }, []);
+  }, [limit]);
 
   return (
     <div>
@@ -59,6 +61,17 @@ const Leaderboard = () => {
           </tbody>
         </Table>
       )}
+      <Dropdown>
+        <Dropdown.Toggle size="sm" variant="Primary">
+          {limit === 0 ? "All time" : `Last ${limit} days`}
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={() => setLimit(7)}>7 days</Dropdown.Item>
+          <Dropdown.Item onClick={() => setLimit(30)}>30 days</Dropdown.Item>
+          <Dropdown.Item onClick={() => setLimit(60)}>60 days</Dropdown.Item>
+          <Dropdown.Item onClick={() => setLimit(0)}>All time</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
   );
 };

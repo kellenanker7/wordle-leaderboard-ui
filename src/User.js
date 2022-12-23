@@ -4,6 +4,15 @@ import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Header from "./Header";
 
+const styles = {
+  1: "#2EB62C",
+  2: "#57C84D",
+  3: "#83D475",
+  4: "#ABE098",
+  5: "#C5E8B7",
+  6: "#FFFFB7",
+};
+
 const User = () => {
   const { user } = useParams();
   const [data, setData] = useState([]);
@@ -45,7 +54,13 @@ const User = () => {
               return (
                 <tr key={i}>
                   <td>{e.PuzzleNumber}</td>
-                  <td>{e.Guesses}</td>
+                  <td
+                    style={{
+                      background: !e.Victory ? "#F6BDC0" : styles[e.Guesses],
+                    }}
+                  >
+                    {e.Guesses}
+                  </td>
                   <td>{e.Victory ? "✅" : "❌"}</td>
                 </tr>
               );
