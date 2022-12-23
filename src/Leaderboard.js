@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
+import Header from "./Header";
 
 const Leaderboard = () => {
   const [data, setData] = useState([]);
+  const [inProgress, setInProgress] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     setError(false);
+    setInProgress(true);
 
     fetch("https://api.wordle.kellenanker.com/leaderboard")
       .then((res) => res.json())
@@ -15,13 +18,15 @@ const Leaderboard = () => {
       .catch((e) => {
         setError(true);
         console.error(e);
-      });
+      })
+      .finally(() => setInProgress(false));
   }, []);
 
   return (
     <div>
+      <Header />
       {error && <p>Oh no! Something went wrong!</p>}
-      <Table>
+      <Table striped bordered>
         <thead>
           <tr>
             <th>Rank</th>

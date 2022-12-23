@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Table from "react-bootstrap/Table";
+import Header from "./Header";
 
 const User = () => {
   const { user } = useParams();
   const [data, setData] = useState([]);
+  const [inProgress, setInProgress] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     setError(false);
+    setInProgress(true);
 
     fetch(`https://api.wordle.kellenanker.com/user/${user}`)
       .then((res) => res.json())
@@ -16,17 +19,18 @@ const User = () => {
       .catch((e) => {
         setError(true);
         console.error(e);
-      });
+      })
+      .finally(() => setInProgress(false));
   }, [user]);
 
+  const formattedNumber = `(${String(user).substring(0, 3)}) ${String(
+    user
+  ).substring(3, 6)}-${String(user).substring(6)}`;
   return (
     <div>
-      <h2>{`(${String(user).substring(0, 3)}) ${String(user).substring(
-        3,
-        6
-      )}-${String(user).substring(6)}`}</h2>
+      <Header user={formattedNumber} />
       {error && <p>Oh no! Something went wrong!</p>}
-      <Table>
+      <Table striped bordered>
         <thead>
           <tr>
             <th>Puzzle</th>
