@@ -27,7 +27,7 @@ const Leaderboard = () => {
     <div>
       <Header />
       {error && <p>Oh no! Something went wrong!</p>}
-      {(inProgress && <Spinner animation="border" role="status"></Spinner>) || (
+      {(inProgress && <Spinner animation="border"></Spinner>) || (
         <Table striped bordered>
           <thead>
             <tr>
@@ -38,16 +38,17 @@ const Leaderboard = () => {
           </thead>
           <tbody>
             {data.map((e, i) => {
+              const formattedNumber = `(${String(e.PhoneNumber).substring(
+                0,
+                3
+              )}) ${String(e.PhoneNumber).substring(3, 6)}-${String(
+                e.PhoneNumber
+              ).substring(6)}`;
               return (
                 <tr key={i}>
                   <td>{i + 1}</td>
                   <td>
-                    <Link to={`/user/${e.PhoneNumber}`}>{`(${String(
-                      e.PhoneNumber
-                    ).substring(0, 3)}) ${String(e.PhoneNumber).substring(
-                      3,
-                      6
-                    )}-${String(e.PhoneNumber).substring(6)}`}</Link>
+                    <Link to={`/user/${e.PhoneNumber}`}>{formattedNumber}</Link>
                   </td>
                   <td>{e.Average}</td>
                 </tr>

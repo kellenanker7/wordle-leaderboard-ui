@@ -9,6 +9,9 @@ const User = () => {
   const [data, setData] = useState([]);
   const [inProgress, setInProgress] = useState(false);
   const [error, setError] = useState(false);
+  const formattedNumber = `(${String(user).substring(0, 3)}) ${String(
+    user
+  ).substring(3, 6)}-${String(user).substring(6)}`;
 
   useEffect(() => {
     setError(false);
@@ -24,14 +27,11 @@ const User = () => {
       .finally(() => setInProgress(false));
   }, [user]);
 
-  const formattedNumber = `(${String(user).substring(0, 3)}) ${String(
-    user
-  ).substring(3, 6)}-${String(user).substring(6)}`;
   return (
     <div>
       <Header user={formattedNumber} />
       {error && <p>Oh no! Something went wrong!</p>}
-      {(inProgress && <Spinner animation="border" role="status"></Spinner>) || (
+      {(inProgress && <Spinner animation="border"></Spinner>) || (
         <Table striped bordered>
           <thead>
             <tr>
