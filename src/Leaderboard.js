@@ -34,6 +34,7 @@ const Leaderboard = () => {
               <th>Rank</th>
               <th>Number</th>
               <th>Avg. Guesses</th>
+              <th>Win %</th>
             </tr>
           </thead>
           <tbody>
@@ -51,6 +52,7 @@ const Leaderboard = () => {
                     <Link to={`/user/${e.PhoneNumber}`}>{formattedNumber}</Link>
                   </td>
                   <td>{e.Average}</td>
+                  <td>{e.WinPercentage}</td>
                 </tr>
               );
             })}
