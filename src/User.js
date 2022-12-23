@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Header from "./Header";
 
 const styles = {
@@ -15,7 +18,11 @@ const styles = {
 
 const User = () => {
   const { user } = useParams();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({
+    LongestStreak: 0,
+    CurrentStreak: 0,
+    Puzzles: [],
+  });
   const [inProgress, setInProgress] = useState(false);
   const [error, setError] = useState(false);
   const formattedNumber = `(${String(user).substring(0, 3)}) ${String(
@@ -37,8 +44,25 @@ const User = () => {
   }, [user]);
 
   return (
-    <div>
-      <Header user={formattedNumber} />
+    <>
+      <Header />
+      <Container>
+        <Row>
+          <Col>
+            <h3>{formattedNumber}</h3>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            Current streak: {data.CurrentStreak}
+            {data.CurrentStreak > 2 && "🔥"}
+          </Col>
+          <Col>
+            Longest streak: {data.LongestStreak}
+            {data.LongestStreak > 2 && "🔥"}
+          </Col>
+        </Row>
+      </Container>
       {error && <p>Oh no! Something went wrong!</p>}
       {(inProgress && <Spinner animation="border"></Spinner>) || (
         <Table striped bordered>
@@ -50,25 +74,27 @@ const User = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((e, i) => {
+            {data.Puzzles.map((puzzle, i) => {
               return (
                 <tr key={i}>
-                  <td>{e.PuzzleNumber}</td>
+                  <td>{puzzle.PuzzleNumber}</td>
                   <td
                     style={{
-                      background: !e.Victory ? "#F6BDC0" : styles[e.Guesses],
+                      background: !puzzle.Victory
+                        ? "#F6BDC0"
+                        : styles[puzzle.Guesses],
                     }}
                   >
-                    {e.Guesses}
+                    {puzzle.Guesses}
                   </td>
-                  <td>{e.Victory ? "✅" : "❌"}</td>
+                  <td>{puzzle.Victory ? "✅" : "❌"}</td>
                 </tr>
               );
             })}
           </tbody>
         </Table>
       )}
-    </div>
+    </>
   );
 };
 
