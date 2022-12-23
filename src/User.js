@@ -46,12 +46,8 @@ const User = () => {
   return (
     <>
       <Header />
+      <h3>{formattedNumber}</h3>
       <Container>
-        <Row>
-          <Col>
-            <h3>{formattedNumber}</h3>
-          </Col>
-        </Row>
         <Row>
           <Col>
             Current streak: {data.CurrentStreak}

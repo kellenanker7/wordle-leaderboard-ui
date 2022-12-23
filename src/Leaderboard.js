@@ -52,6 +52,9 @@ const Leaderboard = () => {
                   <td>{i + 1}</td>
                   <td>
                     <Link to={`/user/${e.PhoneNumber}`}>{formattedNumber}</Link>
+                    {e.CurrentStreak > 2 && (
+                      <span>{` (${e.CurrentStreak}🔥)`}</span>
+                    )}
                   </td>
                   <td>{e.Average}</td>
                   <td>{e.WinPercentage}</td>
