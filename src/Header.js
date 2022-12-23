@@ -7,7 +7,7 @@ const Header = ({ user }) => {
     <Navbar bg="light">
       <Container>
         <Navbar.Brand href="/">Wordle Leaderboard</Navbar.Brand>
-        {user && <Navbar.Brand href={`/user/${user}`}>{user}</Navbar.Brand>}
+        {user && <Navbar.Brand>{user}</Navbar.Brand>}
       </Container>
     </Navbar>
   );
