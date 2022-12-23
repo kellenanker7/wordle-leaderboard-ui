@@ -70,7 +70,7 @@ const Leaderboard = () => {
             <tr>
               <th>Rank</th>
               <th>Number</th>
-              <th>Avg. Guesses</th>
+              <th>Average</th>
               <th>Win %</th>
             </tr>
           </thead>
