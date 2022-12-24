@@ -25,7 +25,6 @@ const Leaderboard = () => {
     setError(false);
     setInProgress(true);
 
-    console.log(limit);
     fetch(`https://api.wordle.kellenanker.com/leaderboard?limit=${limit.val}`)
       .then((res) => res.json())
       .then((data) => setData(data))
