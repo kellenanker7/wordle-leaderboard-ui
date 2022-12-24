@@ -8,17 +8,27 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Header from "./Header";
 
+const limitOpts = [
+  { val: 7, txt: "1 week" },
+  { val: 14, txt: "2 weeks" },
+  { val: 30, txt: "1 month" },
+  { val: 180, txt: "6 months" },
+  { val: 365, txt: "1 year" },
+  { val: 0, txt: "All time" },
+];
+
 const Leaderboard = () => {
   const [data, setData] = useState([]);
   const [inProgress, setInProgress] = useState(false);
   const [error, setError] = useState(false);
-  const [limit, setLimit] = useState(7);
+  const [limit, setLimit] = useState({ val: 7, txt: "1 week" });
 
   useEffect(() => {
     setError(false);
     setInProgress(true);
 
-    fetch(`https://api.wordle.kellenanker.com/leaderboard?limit=${limit}`)
+    console.log(limit);
+    fetch(`https://api.wordle.kellenanker.com/leaderboard?limit=${limit.val}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -37,31 +47,20 @@ const Leaderboard = () => {
           <Col>
             <Dropdown>
               <Dropdown.Toggle size="sm" variant="Primary">
-                {limit === 0 ? "All time" : `Last ${limit} days`}
+                {limit.val === 0 ? "All time" : `Last ${limit.txt}`}
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item onClick={() => setLimit(7)}>
-                  7 days
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => setLimit(30)}>
-                  1 month
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => setLimit(60)}>
-                  2 months
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => setLimit(180)}>
-                  6 months
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => setLimit(365)}>
-                  1 year
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => setLimit(0)}>
-                  All time
-                </Dropdown.Item>
+                {limitOpts.map((e, i) => {
+                  return (
+                    <Dropdown.Item key={i} onClick={() => setLimit(e)}>
+                      {e.txt}
+                    </Dropdown.Item>
+                  );
+                })}
               </Dropdown.Menu>
             </Dropdown>
           </Col>
-          <Col>🔥 = hot streak!</Col>
+          <Col>🔥&nbsp;=&nbsp;hot streak!</Col>
         </Row>
       </Container>
       {(inProgress && <Spinner animation="border"></Spinner>) || (
