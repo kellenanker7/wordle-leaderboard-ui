@@ -9,12 +9,10 @@ import Col from "react-bootstrap/Col";
 import Header from "./Header";
 
 const limitOpts = [
-  { val: 7, txt: "1 week" },
-  { val: 14, txt: "2 weeks" },
-  { val: 30, txt: "1 month" },
-  { val: 180, txt: "6 months" },
-  { val: 365, txt: "1 year" },
-  { val: 0, txt: "All time" },
+  { val: 7, txt: "week" },
+  { val: 30, txt: "month" },
+  { val: 365, txt: "year" },
+  { val: 0, txt: "all time" },
 ];
 
 const Leaderboard = () => {
