@@ -60,7 +60,7 @@ const User = () => {
       </Container>
       {error && <p>Oh no! Something went wrong!</p>}
       {(inProgress && <Spinner animation="border"></Spinner>) || (
-        <Table striped bordered>
+        <Table bordered>
           <thead>
             <tr>
               <th>Puzzle</th>
