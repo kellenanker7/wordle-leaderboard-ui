@@ -17,6 +17,9 @@ const User = () => {
   });
   const [inProgress, setInProgress] = useState(false);
   const [error, setError] = useState(false);
+  const formattedNumber = `(${String(user).substring(0, 3)}) ${String(
+    user
+  ).substring(3, 6)}-${String(user).substring(6)}`;
 
   useEffect(() => {
     setError(false);
@@ -36,6 +39,11 @@ const User = () => {
     <>
       <Header />
       <Container>
+        <Row>
+          <Col>
+            <h2>{formattedNumber}</h2>
+          </Col>
+        </Row>
         <Row>
           <Col>
             Current streak: {data.CurrentStreak}
