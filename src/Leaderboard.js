@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { colors } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -57,14 +58,13 @@ const Leaderboard = () => {
               </Dropdown.Menu>
             </Dropdown>
           </Col>
-          <Col>🔥&nbsp;=&nbsp;hot streak!</Col>
+          <Col>🔥 = hot streak!</Col>
         </Row>
       </Container>
       {(inProgress && <Spinner animation="border"></Spinner>) || (
-        <Table style={{ textAlign: "left" }} striped bordered>
+        <Table style={{ textAlign: "left" }} bordered>
           <thead>
             <tr>
-              <th>Rank</th>
               <th>Number</th>
               <th>Average</th>
               <th>Win %</th>
@@ -80,12 +80,17 @@ const Leaderboard = () => {
               ).substring(6)}`;
               return (
                 <tr key={i}>
-                  <td>{i + 1}</td>
                   <td>
                     <Link to={`/user/${e.PhoneNumber}`}>{formattedNumber}</Link>
-                    {e.CurrentStreak > 2 && <span>🔥</span>}
+                    {e.CurrentStreak > 2 && (
+                      <span className="small text-muted">
+                        {` ${e.CurrentStreak}🔥`}
+                      </span>
+                    )}
                   </td>
-                  <td>{e.Average}</td>
+                  <td style={{ background: colors[Math.floor(e.Average)] }}>
+                    {e.Average}
+                  </td>
                   <td>{e.WinPercentage}</td>
                 </tr>
               );
