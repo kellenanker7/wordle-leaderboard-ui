@@ -1,13 +1,16 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
 const Header = ({ user }) => {
   return (
     <Navbar bg="light">
       <Container>
-        <Navbar.Brand href="/">Wordle Leaderboard</Navbar.Brand>
-        {user && <Navbar.Brand>{user}</Navbar.Brand>}
+        <Nav>
+          <Navbar.Brand href="/">Leaderboard</Navbar.Brand>
+          <Nav.Link href="/today">Today's puzzle</Nav.Link>
+        </Nav>
       </Container>
     </Navbar>
   );

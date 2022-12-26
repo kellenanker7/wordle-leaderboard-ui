@@ -1,20 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { colors } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Header from "./Header";
-
-const colors = {
-  1: "#2EB62C",
-  2: "#57C84D",
-  3: "#83D475",
-  4: "#ABE098",
-  5: "#C5E8B7",
-  6: "#FFFFB7",
-};
 
 const User = () => {
   const { user } = useParams();
@@ -45,8 +37,13 @@ const User = () => {
 
   return (
     <>
-      <Header user={formattedNumber} />
+      <Header />
       <Container>
+        <Row>
+          <Col>
+            <h2>{formattedNumber}</h2>
+          </Col>
+        </Row>
         <Row>
           <Col>
             Current streak: {data.CurrentStreak}

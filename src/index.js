@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
-import App from "./App";
+import Leaderboard from "./Leaderboard";
+import Today from "./Today";
 import User from "./User";
 import reportWebVitals from "./reportWebVitals";
 
@@ -13,7 +14,8 @@ const Routing = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" exact element={<App />} />
+        <Route path="/" exact element={<Leaderboard />} />
+        <Route path="/today" exact element={<Today />} />
         <Route path="/user/:user" element={<User />} />
       </Routes>
     </Router>
