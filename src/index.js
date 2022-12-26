@@ -14,8 +14,9 @@ const Routing = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" exact element={<Leaderboard />} />
+        <Route path="/" exact element={<Today />} />
         <Route path="/today" exact element={<Today />} />
+        <Route path="/Leaderboard" exact element={<Leaderboard />} />
         <Route path="/user/:user" element={<User />} />
       </Routes>
     </Router>

@@ -3,13 +3,14 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
-const Header = ({ user }) => {
+const Header = () => {
   return (
     <Navbar bg="light">
       <Container>
         <Nav>
-          <Navbar.Brand href="/">Leaderboard</Navbar.Brand>
-          <Nav.Link href="/today">Today's puzzle</Nav.Link>
+          <Navbar.Brand href="/">Home</Navbar.Brand>
+          <Nav.Link href="/today">Today</Nav.Link>
+          <Nav.Link href="/leaderboard">Leaderboard</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
