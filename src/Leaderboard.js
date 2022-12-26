@@ -58,7 +58,6 @@ const Leaderboard = () => {
               </Dropdown.Menu>
             </Dropdown>
           </Col>
-          <Col>🔥 = hot streak!</Col>
         </Row>
       </Container>
       {(inProgress && <Spinner animation="border"></Spinner>) || (
