@@ -44,7 +44,7 @@ const User = () => {
           <Container>
             <Row>
               <Col>
-                <h2>{formatNumber(data.PhoneNumber)}</h2>
+                <h2>{formatNumber(user)}</h2>
               </Col>
             </Row>
             <Row>

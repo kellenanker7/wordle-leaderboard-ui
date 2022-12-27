@@ -38,9 +38,7 @@ const Users = () => {
               return (
                 <tr key={i}>
                   <td>
-                    <Link to={`/user/${user}`}>
-                      {formatNumber(user.PhoneNumber)}
-                    </Link>
+                    <Link to={`/user/${user}`}>{formatNumber(user)}</Link>
                   </td>
                 </tr>
               );
