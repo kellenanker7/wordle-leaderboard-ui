@@ -44,17 +44,25 @@ const User = () => {
           <Container>
             <Row>
               <Col>
-                <h2>{formatNumber(user)}</h2>
+                <h2>
+                  {formatNumber(user)}
+                  {data.CurrentStreak > 2 && (
+                    <>
+                      &nbsp;🔥
+                      <span className="small text-muted">
+                        {data.CurrentStreak}
+                      </span>
+                    </>
+                  )}
+                </h2>
               </Col>
             </Row>
             <Row>
               <Col>
-                Current streak: {data.CurrentStreak}
-                {data.CurrentStreak > 2 && "🔥"}
+                Longest streak:<strong>&nbsp;🔥{data.LongestStreak}</strong>
               </Col>
               <Col>
-                Longest streak: {data.LongestStreak}
-                {data.LongestStreak > 2 && "🔥"}
+                Win:<strong>&nbsp;{data.WinPercentage}%</strong>
               </Col>
             </Row>
           </Container>

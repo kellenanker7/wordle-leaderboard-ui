@@ -70,6 +70,7 @@ const Leaderboard = () => {
               <tr>
                 <th>Number</th>
                 <th>Average</th>
+                <th>Streak</th>
               </tr>
             </thead>
             <tbody>
@@ -81,14 +82,13 @@ const Leaderboard = () => {
                         <Link to={`/user/${e.PhoneNumber}`}>
                           {formatNumber(e.PhoneNumber)}
                         </Link>
-                        {e.CurrentStreak > 2 && (
-                          <span className="small text-muted">
-                            &nbsp;&nbsp;&nbsp;{`🔥${e.CurrentStreak}`}
-                          </span>
-                        )}
                       </td>
                       <td style={{ background: colors[Math.floor(e.Average)] }}>
                         {e.Average}
+                      </td>
+                      <td>
+                        {e.CurrentStreak}
+                        {e.CurrentStreak > 2 && "🔥"}
                       </td>
                     </tr>
                   );
