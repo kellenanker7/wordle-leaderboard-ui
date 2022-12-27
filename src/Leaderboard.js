@@ -18,8 +18,8 @@ const limitOpts = [
 
 const Leaderboard = () => {
   const [data, setData] = useState([]);
-  const [inProgress, setInProgress] = useState(true);
   const [error, setError] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
   const [limit, setLimit] = useState({ val: 7, txt: "week" });
 
   useEffect(() => {
@@ -28,9 +28,7 @@ const Leaderboard = () => {
 
     fetch(`https://api.wordle.kellenanker.com/leaderboard?limit=${limit.val}`)
       .then((res) => res.json())
-      .then((data) => {
-        return data.ok ? setData(data) : setError(true);
-      })
+      .then((data) => setData(data))
       .catch((e) => {
         setError(true);
         console.error(e);

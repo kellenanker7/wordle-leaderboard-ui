@@ -15,8 +15,8 @@ const User = () => {
     CurrentStreak: 0,
     Puzzles: [],
   });
-  const [inProgress, setInProgress] = useState(false);
   const [error, setError] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
   const formattedNumber = `(${String(user).substring(0, 3)}) ${String(
     user
   ).substring(3, 6)}-${String(user).substring(6)}`;
@@ -29,8 +29,8 @@ const User = () => {
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
-        setError(true);
         console.error(e);
+        setError(true);
       })
       .finally(() => setInProgress(false));
   }, [user]);
@@ -38,53 +38,58 @@ const User = () => {
   return (
     <>
       <Header active="users" />
-      <Container>
-        <Row>
-          <Col>
-            <h2>{formattedNumber}</h2>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            Current streak: {data.CurrentStreak}
-            {data.CurrentStreak > 2 && "🔥"}
-          </Col>
-          <Col>
-            Longest streak: {data.LongestStreak}
-            {data.LongestStreak > 2 && "🔥"}
-          </Col>
-        </Row>
-      </Container>
-      {error && <p>Oh no! Something went wrong!</p>}
-      {(inProgress && <Spinner animation="border" />) || (
-        <Table bordered>
-          <thead>
-            <tr>
-              <th>Puzzle</th>
-              <th>Guesses</th>
-              <th>Victory?</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.Puzzles.map((puzzle, i) => {
-              return (
-                <tr key={i}>
-                  <td>{puzzle.PuzzleNumber}</td>
-                  <td
-                    style={{
-                      background: !puzzle.Victory
-                        ? "#F6BDC0"
-                        : colors[puzzle.Guesses],
-                    }}
-                  >
-                    {puzzle.Guesses}
-                  </td>
-                  <td>{puzzle.Victory ? "✅" : "❌"}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+      {error ? (
+        <p>Oh no! Something went wrong!</p>
+      ) : inProgress ? (
+        <Spinner animation="border" />
+      ) : (
+        <>
+          <Container>
+            <Row>
+              <Col>
+                <h2>{formattedNumber}</h2>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                Current streak: {data.CurrentStreak}
+                {data.CurrentStreak > 2 && "🔥"}
+              </Col>
+              <Col>
+                Longest streak: {data.LongestStreak}
+                {data.LongestStreak > 2 && "🔥"}
+              </Col>
+            </Row>
+          </Container>
+          <Table bordered>
+            <thead>
+              <tr>
+                <th>Puzzle</th>
+                <th>Guesses</th>
+                <th>Victory?</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.Puzzles.map((puzzle, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{puzzle.PuzzleNumber}</td>
+                    <td
+                      style={{
+                        background: !puzzle.Victory
+                          ? "#F6BDC0"
+                          : colors[puzzle.Guesses],
+                      }}
+                    >
+                      {puzzle.Guesses}
+                    </td>
+                    <td>{puzzle.Victory ? "✅" : "❌"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </>
       )}
     </>
   );

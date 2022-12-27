@@ -6,8 +6,8 @@ import Header from "./Header";
 
 const Users = () => {
   const [data, setData] = useState([]);
-  const [inProgress, setInProgress] = useState(true);
   const [error, setError] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
 
   useEffect(() => {
     setError(false);
@@ -15,12 +15,10 @@ const Users = () => {
 
     fetch("https://api.wordle.kellenanker.com/users")
       .then((res) => res.json())
-      .then((data) => {
-        return data.ok ? setData(data) : setError(true);
-      })
+      .then((data) => setData(data))
       .catch((e) => {
-        setError(true);
         console.error(e);
+        setError(true);
       })
       .finally(() => setInProgress(false));
   }, []);
@@ -28,8 +26,11 @@ const Users = () => {
   return (
     <>
       <Header active="users" />
-      {error && <p>Oh no! Something went wrong!</p>}
-      {(inProgress && <Spinner animation="border" />) || (
+      {error ? (
+        <p>Oh no! Something went wrong!</p>
+      ) : inProgress ? (
+        <Spinner animation="border" />
+      ) : (
         <Table striped bordered>
           <tbody>
             {data.map((user, i) => {
