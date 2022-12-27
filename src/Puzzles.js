@@ -13,7 +13,7 @@ const Puzzles = () => {
     setError(false);
     setInProgress(true);
 
-    fetch("https://api.wordle.kellenanker.com/puzzles")
+    fetch("https://api.wordle.kellenanker.com/today")
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -30,15 +30,17 @@ const Puzzles = () => {
       {(inProgress && <Spinner animation="border"></Spinner>) || (
         <Table striped bordered>
           <tbody>
-            {data.map((puzzle, i) => {
-              return (
-                <tr key={i}>
-                  <td>
-                    <Link to={`/puzzle/${puzzle}`}>{puzzle}</Link>
-                  </td>
-                </tr>
-              );
-            })}
+            {Array.from({ length: 10 }, (_, i) => -1 * (i - data)).map(
+              (puzzle, i) => {
+                return (
+                  <tr key={i}>
+                    <td>
+                      <Link to={`/puzzle/${puzzle}`}>{puzzle}</Link>
+                    </td>
+                  </tr>
+                );
+              }
+            )}
           </tbody>
         </Table>
       )}
