@@ -6,7 +6,7 @@ import Header from "./Header";
 
 const Users = () => {
   const [data, setData] = useState([]);
-  const [inProgress, setInProgress] = useState(false);
+  const [inProgress, setInProgress] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -15,7 +15,9 @@ const Users = () => {
 
     fetch("https://api.wordle.kellenanker.com/users")
       .then((res) => res.json())
-      .then((data) => setData(data))
+      .then((data) => {
+        return data.ok ? setData(data) : setError(true);
+      })
       .catch((e) => {
         setError(true);
         console.error(e);

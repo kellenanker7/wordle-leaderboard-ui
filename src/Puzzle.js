@@ -11,7 +11,7 @@ import Header from "./Header";
 const Puzzle = () => {
   const { puzzle } = useParams();
   const [data, setData] = useState([]);
-  const [inProgress, setInProgress] = useState(false);
+  const [inProgress, setInProgress] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,9 @@ const Puzzle = () => {
 
     fetch(`https://api.wordle.kellenanker.com/puzzle/${puzzle}`)
       .then((res) => res.json())
-      .then((data) => setData(data))
+      .then((data) => {
+        return data.ok ? setData(data) : setError(true);
+      })
       .catch((e) => {
         setError(true);
         console.error(e);

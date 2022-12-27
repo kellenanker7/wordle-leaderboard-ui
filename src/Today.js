@@ -6,15 +6,20 @@ import Header from "./Header.js";
 const Today = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
-  const [inProgress, setInProgress] = useState(false);
+  const [inProgress, setInProgress] = useState(true);
 
   useEffect(() => {
     setInProgress(true);
     setError(false);
     fetch("https://api.wordle.kellenanker.com/today")
       .then((res) => res.text())
-      .then((data) => (data.ok ? navigate(`/puzzle/${data}`) : setError(true)))
-      .catch(() => setError(true))
+      .then((data) => {
+        return data.ok ? navigate(`/puzzle/${data}`) : setError(true);
+      })
+      .catch((e) => {
+        setError(true);
+        console.error(e);
+      })
       .finally(() => setInProgress(false));
   }, [navigate]);
 

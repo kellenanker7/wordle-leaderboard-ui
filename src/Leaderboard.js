@@ -18,9 +18,9 @@ const limitOpts = [
 
 const Leaderboard = () => {
   const [data, setData] = useState([]);
-  const [inProgress, setInProgress] = useState(false);
+  const [inProgress, setInProgress] = useState(true);
   const [error, setError] = useState(false);
-  const [limit, setLimit] = useState({ val: 7, txt: "1 week" });
+  const [limit, setLimit] = useState({ val: 7, txt: "week" });
 
   useEffect(() => {
     setError(false);
@@ -28,7 +28,9 @@ const Leaderboard = () => {
 
     fetch(`https://api.wordle.kellenanker.com/leaderboard?limit=${limit.val}`)
       .then((res) => res.json())
-      .then((data) => setData(data))
+      .then((data) => {
+        return data.ok ? setData(data) : setError(true);
+      })
       .catch((e) => {
         setError(true);
         console.error(e);
@@ -39,61 +41,69 @@ const Leaderboard = () => {
   return (
     <>
       <Header active="leaderboard" />
-      {error && <p>Oh no! Something went wrong!</p>}
-      <Container>
-        <Row>
-          <Col>
-            <Dropdown>
-              <Dropdown.Toggle size="sm" variant="Primary">
-                {limit.val === 0 ? "All time" : `Last ${limit.txt}`}
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                {limitOpts.map((e, i) => {
+      {error ? (
+        <p>Oh no! Something went wrong!</p>
+      ) : inProgress ? (
+        <Spinner animation="border" />
+      ) : (
+        <>
+          <Container>
+            <Row>
+              <Col>
+                <Dropdown>
+                  <Dropdown.Toggle size="sm" variant="Primary">
+                    {limit.val === 0 ? "All time" : `Last ${limit.txt}`}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    {limitOpts.map((e, i) => {
+                      return (
+                        <Dropdown.Item key={i} onClick={() => setLimit(e)}>
+                          {e.txt}
+                        </Dropdown.Item>
+                      );
+                    })}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Col>
+            </Row>
+          </Container>
+          <Table style={{ textAlign: "left" }} bordered>
+            <thead>
+              <tr>
+                <th>Number</th>
+                <th>Average</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data &&
+                data.map((e, i) => {
+                  const formattedNumber = `(${String(e.PhoneNumber).substring(
+                    0,
+                    3
+                  )}) ${String(e.PhoneNumber).substring(3, 6)}-${String(
+                    e.PhoneNumber
+                  ).substring(6)}`;
                   return (
-                    <Dropdown.Item key={i} onClick={() => setLimit(e)}>
-                      {e.txt}
-                    </Dropdown.Item>
+                    <tr key={i}>
+                      <td>
+                        <Link to={`/user/${e.PhoneNumber}`}>
+                          {formattedNumber}
+                        </Link>
+                        {e.CurrentStreak > 2 && (
+                          <span className="small text-muted">
+                            {` 🔥${e.CurrentStreak}`}
+                          </span>
+                        )}
+                      </td>
+                      <td style={{ background: colors[Math.floor(e.Average)] }}>
+                        {e.Average}
+                      </td>
+                    </tr>
                   );
                 })}
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-        </Row>
-      </Container>
-      {(inProgress && <Spinner animation="border" />) || (
-        <Table style={{ textAlign: "left" }} bordered>
-          <thead>
-            <tr>
-              <th>Number</th>
-              <th>Average</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((e, i) => {
-              const formattedNumber = `(${String(e.PhoneNumber).substring(
-                0,
-                3
-              )}) ${String(e.PhoneNumber).substring(3, 6)}-${String(
-                e.PhoneNumber
-              ).substring(6)}`;
-              return (
-                <tr key={i}>
-                  <td>
-                    <Link to={`/user/${e.PhoneNumber}`}>{formattedNumber}</Link>
-                    {e.CurrentStreak > 2 && (
-                      <span className="small text-muted">
-                        {` 🔥${e.CurrentStreak}`}
-                      </span>
-                    )}
-                  </td>
-                  <td style={{ background: colors[Math.floor(e.Average)] }}>
-                    {e.Average}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+            </tbody>
+          </Table>
+        </>
       )}
     </>
   );
