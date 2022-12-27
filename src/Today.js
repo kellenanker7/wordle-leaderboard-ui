@@ -1,21 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import Header from "./Header.js";
 
 const Today = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
 
   useEffect(() => {
+    setInProgress(true);
+    setError(false);
     fetch("https://api.wordle.kellenanker.com/today")
       .then((res) => res.text())
-      .then((data) => navigate(`/puzzle/${data}`));
+      .then((data) => (data.ok ? navigate(`/puzzle/${data}`) : setError(true)))
+      .catch(() => setError(true))
+      .finally(() => setInProgress(false));
   }, [navigate]);
 
   return (
     <>
-      <Header />
-      <Spinner animation="border"></Spinner>
+      <Header active="puzzles" />
+      {error && <p>Oh no! Something went wrong!</p>}
+      {inProgress && <Spinner animation="border" />}
     </>
   );
 };

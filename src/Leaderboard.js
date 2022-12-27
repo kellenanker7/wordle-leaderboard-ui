@@ -38,7 +38,7 @@ const Leaderboard = () => {
 
   return (
     <>
-      <Header />
+      <Header active="leaderboard" />
       {error && <p>Oh no! Something went wrong!</p>}
       <Container>
         <Row>
@@ -60,13 +60,12 @@ const Leaderboard = () => {
           </Col>
         </Row>
       </Container>
-      {(inProgress && <Spinner animation="border"></Spinner>) || (
+      {(inProgress && <Spinner animation="border" />) || (
         <Table style={{ textAlign: "left" }} bordered>
           <thead>
             <tr>
               <th>Number</th>
               <th>Average</th>
-              <th>Win %</th>
             </tr>
           </thead>
           <tbody>
@@ -90,7 +89,6 @@ const Leaderboard = () => {
                   <td style={{ background: colors[Math.floor(e.Average)] }}>
                     {e.Average}
                   </td>
-                  <td>{e.WinPercentage}</td>
                 </tr>
               );
             })}

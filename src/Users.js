@@ -25,9 +25,9 @@ const Users = () => {
 
   return (
     <>
-      <Header />
+      <Header active="users" />
       {error && <p>Oh no! Something went wrong!</p>}
-      {(inProgress && <Spinner animation="border"></Spinner>) || (
+      {(inProgress && <Spinner animation="border" />) || (
         <Table striped bordered>
           <tbody>
             {data.map((user, i) => {

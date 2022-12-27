@@ -30,9 +30,9 @@ const Puzzle = () => {
 
   return (
     <>
-      <Header />
+      <Header active="puzzles" />
       {error && <p>Oh no! Something went wrong!</p>}
-      {(inProgress && <Spinner animation="border"></Spinner>) || (
+      {(inProgress && <Spinner animation="border" />) || (
         <>
           <Container>
             <Row>

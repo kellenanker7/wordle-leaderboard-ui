@@ -4,11 +4,11 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import logo from "./wordle.png";
 
-const Header = () => {
+const Header = ({ active }) => {
   return (
     <Navbar bg="light">
       <Container>
-        <Nav style={{ alignItems: "center" }}>
+        <Nav defaultActiveKey="/" style={{ alignItems: "center" }}>
           <Navbar.Brand href="/">
             <img
               style={{ height: "2em", width: "2em" }}
@@ -16,9 +16,24 @@ const Header = () => {
               alt="Home"
             />
           </Navbar.Brand>
-          <Nav.Link href="/leaderboard">Leaderboard</Nav.Link>
-          <Nav.Link href="/puzzles">Puzzles</Nav.Link>
-          <Nav.Link href="/users">Users</Nav.Link>
+          <Nav.Link
+            className={active === "leaderboard" ? "active" : ""}
+            href="/leaderboard"
+          >
+            Leaderboard
+          </Nav.Link>
+          <Nav.Link
+            className={active === "puzzles" ? "active" : ""}
+            href="/puzzles"
+          >
+            Puzzles
+          </Nav.Link>
+          <Nav.Link
+            className={active === "users" ? "active" : ""}
+            href="/users"
+          >
+            Users
+          </Nav.Link>
         </Nav>
       </Container>
     </Navbar>

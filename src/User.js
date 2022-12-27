@@ -37,7 +37,7 @@ const User = () => {
 
   return (
     <>
-      <Header />
+      <Header active="users" />
       <Container>
         <Row>
           <Col>
@@ -56,7 +56,7 @@ const User = () => {
         </Row>
       </Container>
       {error && <p>Oh no! Something went wrong!</p>}
-      {(inProgress && <Spinner animation="border"></Spinner>) || (
+      {(inProgress && <Spinner animation="border" />) || (
         <Table bordered>
           <thead>
             <tr>

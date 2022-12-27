@@ -25,9 +25,9 @@ const Puzzles = () => {
 
   return (
     <>
-      <Header />
+      <Header active="puzzles" />
       {error && <p>Oh no! Something went wrong!</p>}
-      {(inProgress && <Spinner animation="border"></Spinner>) || (
+      {(inProgress && <Spinner animation="border" />) || (
         <Table striped bordered>
           <tbody>
             {Array.from({ length: 10 }, (_, i) => -1 * (i - data)).map(
