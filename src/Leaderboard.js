@@ -83,7 +83,7 @@ const Leaderboard = () => {
                     <Link to={`/user/${e.PhoneNumber}`}>{formattedNumber}</Link>
                     {e.CurrentStreak > 2 && (
                       <span className="small text-muted">
-                        {` ${e.CurrentStreak}🔥`}
+                        {` 🔥${e.CurrentStreak}`}
                       </span>
                     )}
                   </td>
