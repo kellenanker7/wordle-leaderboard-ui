@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Header from "./Header";
@@ -12,8 +13,7 @@ const Puzzles = () => {
   useEffect(() => {
     setError(false);
     setInProgress(true);
-
-    fetch("https://api.wordle.kellenanker.com/today")
+    fetch(`${wordleApi}/today`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {

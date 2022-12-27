@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { colors } from "./Constants.js";
+import { colors, formatNumber, wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -26,7 +26,7 @@ const Leaderboard = () => {
     setError(false);
     setInProgress(true);
 
-    fetch(`https://api.wordle.kellenanker.com/leaderboard?limit=${limit.val}`)
+    fetch(`${wordleApi}/leaderboard?limit=${limit.val}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -75,21 +75,15 @@ const Leaderboard = () => {
             <tbody>
               {data &&
                 data.map((e, i) => {
-                  const formattedNumber = `(${String(e.PhoneNumber).substring(
-                    0,
-                    3
-                  )}) ${String(e.PhoneNumber).substring(3, 6)}-${String(
-                    e.PhoneNumber
-                  ).substring(6)}`;
                   return (
                     <tr key={i}>
                       <td>
                         <Link to={`/user/${e.PhoneNumber}`}>
-                          {formattedNumber}
+                          {formatNumber(e.PhoneNumber)}
                         </Link>
                         {e.CurrentStreak > 2 && (
                           <span className="small text-muted">
-                            {` 🔥${e.CurrentStreak}`}
+                            &nbsp;&nbsp;&nbsp;{`🔥${e.CurrentStreak}`}
                           </span>
                         )}
                       </td>

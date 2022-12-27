@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { colors } from "./Constants.js";
+import { colors, formatNumber, wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
@@ -18,7 +18,7 @@ const Puzzle = () => {
     setError(false);
     setInProgress(true);
 
-    fetch(`https://api.wordle.kellenanker.com/puzzle/${puzzle}`)
+    fetch(`${wordleApi}/puzzle/${puzzle}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -55,17 +55,11 @@ const Puzzle = () => {
             <tbody>
               {data.Users &&
                 data.Users.map((e, i) => {
-                  const formattedNumber = `(${String(e.PhoneNumber).substring(
-                    0,
-                    3
-                  )}) ${String(e.PhoneNumber).substring(3, 6)}-${String(
-                    e.PhoneNumber
-                  ).substring(6)}`;
                   return (
                     <tr key={i}>
                       <td>
                         <Link to={`/user/${e.PhoneNumber}`}>
-                          {formattedNumber}
+                          {formatNumber(e.PhoneNumber)}
                         </Link>
                       </td>
                       <td

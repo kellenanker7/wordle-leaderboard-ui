@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { formatNumber, wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Header from "./Header";
@@ -13,7 +14,7 @@ const Users = () => {
     setError(false);
     setInProgress(true);
 
-    fetch("https://api.wordle.kellenanker.com/users")
+    fetch(`${wordleApi}/users`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -34,14 +35,12 @@ const Users = () => {
         <Table striped bordered>
           <tbody>
             {data.map((user, i) => {
-              const formattedNumber = `(${String(user).substring(
-                0,
-                3
-              )}) ${String(user).substring(3, 6)}-${String(user).substring(6)}`;
               return (
                 <tr key={i}>
                   <td>
-                    <Link to={`/user/${user}`}>{formattedNumber}</Link>
+                    <Link to={`/user/${user}`}>
+                      {formatNumber(user.PhoneNumber)}
+                    </Link>
                   </td>
                 </tr>
               );

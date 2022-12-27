@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { colors } from "./Constants.js";
+import { colors, formatNumber, wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
@@ -17,15 +17,12 @@ const User = () => {
   });
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
-  const formattedNumber = `(${String(user).substring(0, 3)}) ${String(
-    user
-  ).substring(3, 6)}-${String(user).substring(6)}`;
 
   useEffect(() => {
     setError(false);
     setInProgress(true);
 
-    fetch(`https://api.wordle.kellenanker.com/user/${user}`)
+    fetch(`${wordleApi}/user/${user}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -47,7 +44,7 @@ const User = () => {
           <Container>
             <Row>
               <Col>
-                <h2>{formattedNumber}</h2>
+                <h2>{formatNumber(data.PhoneNumber)}</h2>
               </Col>
             </Row>
             <Row>
