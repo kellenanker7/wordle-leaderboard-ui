@@ -13,6 +13,7 @@ const Puzzles = () => {
   useEffect(() => {
     setError(false);
     setInProgress(true);
+
     fetch(`${wordleApi}/today`)
       .then((res) => res.json())
       .then((data) => setData(data))

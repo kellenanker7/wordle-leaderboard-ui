@@ -12,6 +12,7 @@ const Today = () => {
   useEffect(() => {
     setInProgress(true);
     setError(false);
+
     fetch(`${wordleApi}/today`)
       .then((res) => res.json())
       .then((data) => navigate(`/puzzle/${data.PuzzleNumber}`))

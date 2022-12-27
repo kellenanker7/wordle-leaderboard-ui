@@ -4,9 +4,6 @@ import { colors, formatNumber, wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Dropdown from "react-bootstrap/Dropdown";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Header from "./Header";
 
 const limitOpts = [
@@ -45,26 +42,20 @@ const Leaderboard = () => {
         <Spinner animation="border" />
       ) : (
         <>
-          <Container>
-            <Row>
-              <Col>
-                <Dropdown>
-                  <Dropdown.Toggle size="sm" variant="Primary">
-                    {limit.val === 0 ? "All time" : `Last ${limit.txt}`}
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    {limitOpts.map((e, i) => {
-                      return (
-                        <Dropdown.Item key={i} onClick={() => setLimit(e)}>
-                          {e.txt}
-                        </Dropdown.Item>
-                      );
-                    })}
-                  </Dropdown.Menu>
-                </Dropdown>
-              </Col>
-            </Row>
-          </Container>
+          <Dropdown>
+            <Dropdown.Toggle size="sm" variant="Primary">
+              {limit.val === 0 ? "All time" : `Last ${limit.txt}`}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {limitOpts.map((e, i) => {
+                return (
+                  <Dropdown.Item key={i} onClick={() => setLimit(e)}>
+                    {e.txt}
+                  </Dropdown.Item>
+                );
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
           <Table style={{ textAlign: "left" }} bordered>
             <thead>
               <tr>
