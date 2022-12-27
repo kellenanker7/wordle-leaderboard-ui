@@ -20,7 +20,7 @@ const Routing = () => {
         <Route path="/" exact element={<Today />} />
         <Route path="/today" exact element={<Today />} />
         <Route path="/leaderboard" exact element={<Leaderboard />} />
-        {/*<Route path="/users" element={<Users />} />*/}
+        <Route path="/users" element={<Users />} />
         <Route path="/user/:user" element={<User />} />
         <Route path="/puzzles" element={<Puzzles />} />
         <Route path="/puzzle/:puzzle" element={<Puzzle />} />

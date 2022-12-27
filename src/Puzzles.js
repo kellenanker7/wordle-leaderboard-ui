@@ -28,12 +28,7 @@ const Puzzles = () => {
       <Header />
       {error && <p>Oh no! Something went wrong!</p>}
       {(inProgress && <Spinner animation="border"></Spinner>) || (
-        <Table bordered>
-          <thead>
-            <tr>
-              <th>Puzzles</th>
-            </tr>
-          </thead>
+        <Table striped bordered>
           <tbody>
             {data.map((puzzle, i) => {
               return (
