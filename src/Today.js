@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import Header from "./Header.js";
 
 const Today = () => {
   const navigate = useNavigate();
@@ -11,7 +12,12 @@ const Today = () => {
       .then((data) => navigate(`/puzzle/${data}`));
   }, [navigate]);
 
-  return <Spinner animation="border"></Spinner>;
+  return (
+    <>
+      <Header />
+      <Spinner animation="border"></Spinner>
+    </>
+  );
 };
 
 export default Today;
