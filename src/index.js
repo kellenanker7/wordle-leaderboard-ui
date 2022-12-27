@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import Leaderboard from "./Leaderboard";
 import Today from "./Today";
+import Users from "./Users";
 import User from "./User";
+import Puzzles from "./Puzzles";
+import Puzzle from "./Puzzle";
 import reportWebVitals from "./reportWebVitals";
 
 // Importing the Bootstrap CSS
@@ -17,7 +20,10 @@ const Routing = () => {
         <Route path="/" exact element={<Today />} />
         <Route path="/today" exact element={<Today />} />
         <Route path="/leaderboard" exact element={<Leaderboard />} />
+        {/*<Route path="/users" element={<Users />} />*/}
         <Route path="/user/:user" element={<User />} />
+        <Route path="/puzzles" element={<Puzzles />} />
+        <Route path="/puzzle/:puzzle" element={<Puzzle />} />
       </Routes>
     </Router>
   );

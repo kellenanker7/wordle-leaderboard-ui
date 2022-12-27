@@ -18,6 +18,8 @@ const Header = () => {
           </Navbar.Brand>
           <Nav.Link href="/today">Today</Nav.Link>
           <Nav.Link href="/leaderboard">Leaderboard</Nav.Link>
+          <Nav.Link href="/puzzles">Puzzles</Nav.Link>
+          {/*<Nav.Link href="/users">Users</Nav.Link>*/}
         </Nav>
       </Container>
     </Navbar>
