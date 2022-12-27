@@ -18,7 +18,6 @@ const Routing = () => {
     <Router>
       <Routes>
         <Route path="/" exact element={<Today />} />
-        <Route path="/today" exact element={<Today />} />
         <Route path="/leaderboard" exact element={<Leaderboard />} />
         <Route path="/users" element={<Users />} />
         <Route path="/user/:user" element={<User />} />
