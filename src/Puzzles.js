@@ -7,8 +7,6 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Header from "./Header";
 
-const limitOpts = Array.from({ length: 3 }, (_, i) => (i + 1) * 10);
-
 const Puzzles = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState();
