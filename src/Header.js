@@ -3,6 +3,8 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import logo from "./wordle.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 const Header = ({ active }) => {
   return (
@@ -33,6 +35,14 @@ const Header = ({ active }) => {
             href="/users"
           >
             Users
+          </Nav.Link>
+        </Nav>
+        <Nav>
+          <Nav.Link
+            className={active === "about" ? "active" : ""}
+            href="/about"
+          >
+            <FontAwesomeIcon icon={faCircleInfo} />
           </Nav.Link>
         </Nav>
       </Container>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { colors, formatNumber, wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
@@ -71,14 +71,17 @@ const User = () => {
               <tr>
                 <th>Puzzle</th>
                 <th>Guesses</th>
-                <th>Victory?</th>
               </tr>
             </thead>
             <tbody>
               {data.Puzzles.map((puzzle, i) => {
                 return (
                   <tr key={i}>
-                    <td>{puzzle.PuzzleNumber}</td>
+                    <td>
+                      <Link to={`/puzzle/${puzzle.PuzzleNumber}`}>
+                        {puzzle.PuzzleNumber}
+                      </Link>
+                    </td>
                     <td
                       style={{
                         background: !puzzle.Victory
@@ -88,7 +91,6 @@ const User = () => {
                     >
                       {puzzle.Guesses}
                     </td>
-                    <td>{puzzle.Victory ? "✅" : "❌"}</td>
                   </tr>
                 );
               })}

@@ -8,6 +8,7 @@ import Users from "./Users";
 import User from "./User";
 import Puzzles from "./Puzzles";
 import Puzzle from "./Puzzle";
+import About from "./About";
 import reportWebVitals from "./reportWebVitals";
 
 // Importing the Bootstrap CSS
@@ -23,6 +24,7 @@ const Routing = () => {
         <Route path="/user/:user" element={<User />} />
         <Route path="/puzzles" element={<Puzzles />} />
         <Route path="/puzzle/:puzzle" element={<Puzzle />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
   );

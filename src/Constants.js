@@ -7,6 +7,7 @@ export const colors = {
   4: "#ABE098",
   5: "#C5E8B7",
   6: "#FFFFB7",
+  7: "#F6BDC0",
 };
 
 export const formatNumber = (n) =>

@@ -47,9 +47,8 @@ const Puzzle = () => {
           <Table style={{ textAlign: "left" }} bordered>
             <thead>
               <tr>
-                <th>Number</th>
+                <th>User</th>
                 <th>Guesses</th>
-                <th>Victory?</th>
               </tr>
             </thead>
             <tbody>
@@ -65,13 +64,12 @@ const Puzzle = () => {
                       <td
                         style={{
                           background: !e.Victory
-                            ? "#F6BDC0"
+                            ? colors[7]
                             : colors[e.Guesses],
                         }}
                       >
                         {e.Guesses}
                       </td>
-                      <td>{e.Victory ? "✅" : "❌"}</td>
                     </tr>
                   );
                 })}

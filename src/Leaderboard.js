@@ -43,7 +43,7 @@ const Leaderboard = () => {
       ) : (
         <>
           <Dropdown>
-            <Dropdown.Toggle size="sm" variant="Primary">
+            <Dropdown.Toggle size="md" variant="Primary">
               {limit.val === 0 ? "All time" : `Last ${limit.txt}`}
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -59,7 +59,7 @@ const Leaderboard = () => {
           <Table style={{ textAlign: "left" }} bordered>
             <thead>
               <tr>
-                <th>Number</th>
+                <th>User</th>
                 <th>Average</th>
                 <th>Streak</th>
               </tr>
@@ -67,22 +67,26 @@ const Leaderboard = () => {
             <tbody>
               {data &&
                 data.map((e, i) => {
-                  return (
-                    <tr key={i}>
-                      <td>
-                        <Link to={`/user/${e.PhoneNumber}`}>
-                          {formatNumber(e.PhoneNumber)}
-                        </Link>
-                      </td>
-                      <td style={{ background: colors[Math.floor(e.Average)] }}>
-                        {e.Average}
-                      </td>
-                      <td>
-                        {e.CurrentStreak}
-                        {e.CurrentStreak > 2 && "🔥"}
-                      </td>
-                    </tr>
-                  );
+                  if (e.Wins.length >= 3) {
+                    return (
+                      <tr key={i}>
+                        <td>
+                          <Link to={`/user/${e.PhoneNumber}`}>
+                            {formatNumber(e.PhoneNumber)}
+                          </Link>
+                        </td>
+                        <td
+                          style={{ background: colors[Math.floor(e.Average)] }}
+                        >
+                          {e.Average}
+                        </td>
+                        <td>
+                          {e.CurrentStreak}
+                          {e.CurrentStreak > 2 && "🔥"}
+                        </td>
+                      </tr>
+                    );
+                  }
                 })}
             </tbody>
           </Table>
