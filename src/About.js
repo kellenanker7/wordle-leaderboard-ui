@@ -17,7 +17,7 @@ const About = () => {
           </p>
           <p>
             Users must solve at least three Wordles over the given time period
-            to earn a place on the leaderboard
+            to earn a place on the leaderboard.
           </p>
           <p>
             Users achieve a "hot streak" (denoted by 🔥) after successfuly
