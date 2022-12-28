@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatNumber, wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
+import Form from "react-bootstrap/Form";
 import Header from "./Header";
 
 const Users = () => {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState();
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
@@ -32,19 +35,34 @@ const Users = () => {
       ) : inProgress ? (
         <Spinner animation="border" />
       ) : (
-        <Table striped bordered>
-          <tbody>
-            {data.map((user, i) => {
-              return (
-                <tr key={i}>
-                  <td>
-                    <Link to={`/user/${user}`}>{formatNumber(user)}</Link>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+        <>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              navigate(`/user/${search}`);
+            }}
+            className="d-flex"
+          >
+            <Form.Control
+              onChange={(e) => setSearch(e.target.value.replace(/[\D]/g, ""))}
+              type="search"
+              placeholder="Jump to a user..."
+            />
+          </Form>
+          <Table striped bordered>
+            <tbody>
+              {data.map((user, i) => {
+                return (
+                  <tr key={i}>
+                    <td>
+                      <Link to={`/user/${user}`}>{formatNumber(user)}</Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </>
       )}
     </>
   );

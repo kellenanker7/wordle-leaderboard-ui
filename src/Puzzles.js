@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
-import Dropdown from "react-bootstrap/Dropdown";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
 import Header from "./Header";
 
 const limitOpts = Array.from({ length: 3 }, (_, i) => (i + 1) * 10);
 
 const Puzzles = () => {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState();
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
-  const [limit, setLimit] = useState(10);
 
   useEffect(() => {
     setError(false);
@@ -37,24 +39,24 @@ const Puzzles = () => {
         <Spinner animation="border" />
       ) : (
         <>
-          <Dropdown>
-            <Dropdown.Toggle size="md" variant="Primary">
-              {`Last ${limit}`}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {limitOpts.map((e, i) => {
-                return (
-                  <Dropdown.Item key={i} onClick={() => setLimit(e)}>
-                    {e}
-                  </Dropdown.Item>
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
+          <Row>
+            <Form
+              onSubmit={() => {
+                navigate(`/puzzle/${search}`);
+              }}
+              className="d-flex"
+            >
+              <Form.Control
+                onChange={(e) => setSearch(e.target.value)}
+                type="search"
+                placeholder="Jump to a puzzle..."
+              />
+            </Form>
+          </Row>
           <Table striped bordered>
             <tbody>
               {Array.from(
-                { length: limit },
+                { length: 10 },
                 (_, i) => -1 * (i - data.PuzzleNumber)
               ).map((puzzle, i) => {
                 return (
