@@ -17,7 +17,7 @@ const Leaderboard = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
-  const [limit, setLimit] = useState({ val: 7, txt: "week" });
+  const [limit, setLimit] = useState({ val: 30, txt: "month" });
 
   useEffect(() => {
     setError(false);
@@ -59,9 +59,9 @@ const Leaderboard = () => {
           <Table style={{ textAlign: "left" }} bordered>
             <thead>
               <tr>
-                <th>User</th>
-                <th>Average</th>
-                <th>Streak</th>
+                <th className="col col-8">User</th>
+                <th className="col col-2">Average</th>
+                <th className="col col-2">Streak</th>
               </tr>
             </thead>
             <tbody>
@@ -81,8 +81,8 @@ const Leaderboard = () => {
                           {e.Average}
                         </td>
                         <td>
-                          {e.CurrentStreak}
                           {e.CurrentStreak > 2 && "🔥"}
+                          {e.CurrentStreak}
                         </td>
                       </tr>
                     );

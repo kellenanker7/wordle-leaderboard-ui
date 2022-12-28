@@ -10,12 +10,10 @@ const About = () => {
       <Header active="About" />
       <Container>
         <Row>
-          <h2>
-            <Link to="/leaderboard">Leaderboard</Link>
-          </h2>
+          <h2>Leaderboard</h2>
           <p>
-            The leaderboard ranks users by their average number of guesses taken
-            to solve Wordles.
+            The <Link to="/leaderboard">leaderboard</Link> ranks users by their
+            average number of guesses taken to solve Wordles.
           </p>
           <p>
             Users must solve at least three Wordles over the given time period
@@ -42,9 +40,9 @@ const About = () => {
                 key={e}
                 style={{ background: colors[e], textAlign: "center" }}
               >
-                {e === 1 && "Solved in 1 guess"}
+                {e <= 1 && "Solved in 1 guess"}
                 {e > 1 && e < 7 && `Solved in ${e} guesses`}
-                {e === 7 && "Failed to solve"}
+                {e >= 7 && "Failed to solve"}
               </div>
             ))}
           </div>

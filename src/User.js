@@ -58,19 +58,22 @@ const User = () => {
               </Col>
             </Row>
             <Row>
-              <Col>
-                Longest streak:<strong>&nbsp;🔥{data.LongestStreak}</strong>
+              <Col className="text-muted">
+                Average:<strong>&nbsp;{data.Average}</strong>
               </Col>
-              <Col>
+              <Col className="text-muted">
                 Win:<strong>&nbsp;{data.WinPercentage}%</strong>
+              </Col>
+              <Col className="text-muted">
+                Longest🔥:<strong>&nbsp;{data.LongestStreak}</strong>
               </Col>
             </Row>
           </Container>
           <Table bordered>
             <thead>
               <tr>
-                <th>Puzzle</th>
-                <th>Guesses</th>
+                <th className="col col-7">Puzzle</th>
+                <th className="col col-5">Guesses</th>
               </tr>
             </thead>
             <tbody>
