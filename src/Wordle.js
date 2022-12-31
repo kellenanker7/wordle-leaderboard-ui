@@ -18,7 +18,7 @@ const Wordle = () => {
     setError(false);
     setInProgress(true);
 
-    fetch(`${wordleApi}/puzzle/${wordle}`)
+    fetch(`${wordleApi}/wordle/${wordle}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
