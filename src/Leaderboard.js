@@ -80,8 +80,11 @@ const Leaderboard = () => {
                       {e.Average}
                     </td>
                     <td>
-                      {e.CurrentStreak > 2 && "🔥"}
-                      {e.CurrentStreak}
+                      {e.CurrentStreak > 2
+                        ? `🔥${e.CurrentStreak}`
+                        : e.CurrentStreak < 1
+                        ? "-"
+                        : e.CurrentStreak}
                     </td>
                   </tr>
                 ))}
