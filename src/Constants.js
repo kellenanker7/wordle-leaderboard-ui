@@ -1,7 +1,7 @@
 export const wordleApi = "https://api.wordle.kellenanker.com";
 
 export const colors = {
-  1: "#2EB62C",
+  1: "#C1DDE6",
   2: "#57C84D",
   3: "#83D475",
   4: "#ABE098",

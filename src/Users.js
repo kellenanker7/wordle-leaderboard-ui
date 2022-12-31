@@ -55,7 +55,9 @@ const Users = () => {
                 return (
                   <tr key={i}>
                     <td>
-                      <Link to={`/user/${user}`}>{formatNumber(user)}</Link>
+                      <Link style={{ display: "block" }} to={`/user/${user}`}>
+                        {formatNumber(user)}
+                      </Link>
                     </td>
                   </tr>
                 );

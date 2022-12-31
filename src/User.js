@@ -87,7 +87,10 @@ const User = () => {
                 return (
                   <tr key={i}>
                     <td>
-                      <Link to={`/wordle/${wordle.PuzzleNumber}`}>
+                      <Link
+                        style={{ display: "block" }}
+                        to={`/wordle/${wordle.PuzzleNumber}`}
+                      >
                         {wordle.PuzzleNumber}
                       </Link>
                     </td>

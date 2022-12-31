@@ -57,7 +57,10 @@ const Wordle = () => {
                   return (
                     <tr key={i}>
                       <td>
-                        <Link to={`/user/${e.PhoneNumber}`}>
+                        <Link
+                          style={{ display: "block" }}
+                          to={`/user/${e.PhoneNumber}`}
+                        >
                           {formatNumber(e.PhoneNumber)}
                         </Link>
                       </td>

@@ -61,7 +61,12 @@ const Wordles = () => {
                 return (
                   <tr key={i}>
                     <td>
-                      <Link to={`/wordle/${wordle}`}>{wordle}</Link>
+                      <Link
+                        style={{ display: "block" }}
+                        to={`/wordle/${wordle}`}
+                      >
+                        {wordle}
+                      </Link>
                     </td>
                   </tr>
                 );
