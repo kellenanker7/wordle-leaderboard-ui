@@ -6,8 +6,8 @@ import Leaderboard from "./Leaderboard";
 import Today from "./Today";
 import Users from "./Users";
 import User from "./User";
-import Puzzles from "./Puzzles";
-import Puzzle from "./Puzzle";
+import Wordles from "./Wordles";
+import Wordle from "./Wordle";
 import About from "./About";
 import reportWebVitals from "./reportWebVitals";
 
@@ -22,8 +22,8 @@ const Routing = () => {
         <Route path="/leaderboard" exact element={<Leaderboard />} />
         <Route path="/users" element={<Users />} />
         <Route path="/user/:user" element={<User />} />
-        <Route path="/puzzles" element={<Puzzles />} />
-        <Route path="/puzzle/:puzzle" element={<Puzzle />} />
+        <Route path="/wordles" element={<Wordles />} />
+        <Route path="/wordle/:wordle" element={<Wordle />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </Router>

@@ -15,7 +15,7 @@ const Today = () => {
 
     fetch(`${wordleApi}/today`)
       .then((res) => res.json())
-      .then((data) => navigate(`/puzzle/${data.PuzzleNumber}`))
+      .then((data) => navigate(`/wordle/${data.PuzzleNumber}`))
       .catch((e) => {
         console.error(e);
         setError(true);
@@ -25,7 +25,7 @@ const Today = () => {
 
   return (
     <>
-      <Header active="puzzles" />
+      <Header active="wordles" />
       {error ? (
         <p>Oh no! Something went wrong!</p>
       ) : (

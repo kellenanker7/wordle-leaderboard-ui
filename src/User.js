@@ -32,6 +32,7 @@ const User = () => {
       .finally(() => setInProgress(false));
   }, [user]);
 
+  console.log(data);
   return (
     <>
       <Header active="users" />
@@ -59,40 +60,45 @@ const User = () => {
             </Row>
             <Row>
               <Col className="text-muted">
-                Average:<strong>&nbsp;{data.Average}</strong>
+                Average<strong>&nbsp;{data.Average}</strong>
               </Col>
               <Col className="text-muted">
-                Win:<strong>&nbsp;{data.WinPercentage}%</strong>
+                Win<strong>&nbsp;{data.WinPercentage}%</strong>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="text-muted">
+                Total games<strong>&nbsp;{data.Puzzles.length}</strong>
               </Col>
               <Col className="text-muted">
-                Longest🔥:<strong>&nbsp;{data.LongestStreak}</strong>
+                Longest🔥<strong>&nbsp;{data.LongestStreak}</strong>
               </Col>
             </Row>
           </Container>
           <Table bordered>
             <thead>
               <tr>
-                <th className="col col-7">Puzzle</th>
+                <th className="col col-7">Wordle</th>
                 <th className="col col-5">Guesses</th>
               </tr>
             </thead>
             <tbody>
-              {data.Puzzles.map((puzzle, i) => {
+              {data.Puzzles.map((wordle, i) => {
                 return (
                   <tr key={i}>
                     <td>
-                      <Link to={`/puzzle/${puzzle.PuzzleNumber}`}>
-                        {puzzle.PuzzleNumber}
+                      <Link to={`/wordle/${wordle.PuzzleNumber}`}>
+                        {wordle.PuzzleNumber}
                       </Link>
                     </td>
                     <td
                       style={{
-                        background: !puzzle.Victory
+                        background: !wordle.Victory
                           ? "#F6BDC0"
-                          : colors[puzzle.Guesses],
+                          : colors[wordle.Guesses],
                       }}
                     >
-                      {puzzle.Guesses}
+                      {wordle.Guesses}
                     </td>
                   </tr>
                 );

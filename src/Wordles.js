@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Header from "./Header";
 
-const Puzzles = () => {
+const Wordles = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState();
   const [data, setData] = useState([]);
@@ -30,7 +30,7 @@ const Puzzles = () => {
 
   return (
     <>
-      <Header active="puzzles" />
+      <Header active="wordles" />
       {error ? (
         <p>Oh no! Something went wrong!</p>
       ) : inProgress ? (
@@ -39,15 +39,16 @@ const Puzzles = () => {
         <>
           <Row>
             <Form
-              onSubmit={() => {
-                navigate(`/puzzle/${search}`);
+              onSubmit={(e) => {
+                e.preventDefault();
+                navigate(`/wordle/${search}`);
               }}
               className="d-flex"
             >
               <Form.Control
                 onChange={(e) => setSearch(e.target.value)}
                 type="search"
-                placeholder="Jump to a puzzle..."
+                placeholder="Jump to a Wordle..."
               />
             </Form>
           </Row>
@@ -56,11 +57,11 @@ const Puzzles = () => {
               {Array.from(
                 { length: 10 },
                 (_, i) => -1 * (i - data.PuzzleNumber)
-              ).map((puzzle, i) => {
+              ).map((wordle, i) => {
                 return (
                   <tr key={i}>
                     <td>
-                      <Link to={`/puzzle/${puzzle}`}>{puzzle}</Link>
+                      <Link to={`/wordle/${wordle}`}>{wordle}</Link>
                     </td>
                   </tr>
                 );
@@ -73,4 +74,4 @@ const Puzzles = () => {
   );
 };
 
-export default Puzzles;
+export default Wordles;

@@ -24,8 +24,7 @@ const About = () => {
             completing three consecutive Wordles.
           </p>
           <p>
-            Skipping a puzzle snaps a streak, as does failing to solve the
-            puzzle altogether.
+            Skipping a Wordle snaps a streak, as does failing to solve a Wordle.
           </p>
         </Row>
         <Row>

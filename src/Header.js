@@ -25,10 +25,10 @@ const Header = ({ active }) => {
             Leaderboard
           </Nav.Link>
           <Nav.Link
-            className={active === "puzzles" ? "active" : ""}
-            href="/puzzles"
+            className={active === "wordles" ? "active" : ""}
+            href="/wordles"
           >
-            Puzzles
+            Wordles
           </Nav.Link>
           <Nav.Link
             className={active === "users" ? "active" : ""}

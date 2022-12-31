@@ -8,8 +8,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Header from "./Header";
 
-const Puzzle = () => {
-  const { puzzle } = useParams();
+const Wordle = () => {
+  const { wordle } = useParams();
   const [data, setData] = useState([]);
   const [inProgress, setInProgress] = useState(false);
   const [error, setError] = useState(false);
@@ -18,7 +18,7 @@ const Puzzle = () => {
     setError(false);
     setInProgress(true);
 
-    fetch(`${wordleApi}/puzzle/${puzzle}`)
+    fetch(`${wordleApi}/puzzle/${wordle}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -26,11 +26,11 @@ const Puzzle = () => {
         setError(true);
       })
       .finally(() => setInProgress(false));
-  }, [puzzle]);
+  }, [wordle]);
 
   return (
     <>
-      <Header active="puzzles" />
+      <Header active="wordles" />
       {error ? (
         <p>Oh no! Something went wrong!</p>
       ) : inProgress ? (
@@ -40,7 +40,7 @@ const Puzzle = () => {
           <Container>
             <Row>
               <Col>
-                <h2>Puzzle {data.PuzzleNumber}</h2>
+                <h2>Wordle {data.PuzzleNumber}</h2>
               </Col>
             </Row>
           </Container>
@@ -81,4 +81,4 @@ const Puzzle = () => {
   );
 };
 
-export default Puzzle;
+export default Wordle;
