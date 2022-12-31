@@ -66,31 +66,25 @@ const Leaderboard = () => {
             </thead>
             <tbody>
               {data &&
-                data.map((e, i) => {
-                  if (e.Wins.length >= 3) {
-                    return (
-                      <tr key={i}>
-                        <td>
-                          <Link
-                            style={{ display: "block" }}
-                            to={`/user/${e.PhoneNumber}`}
-                          >
-                            {formatNumber(e.PhoneNumber)}
-                          </Link>
-                        </td>
-                        <td
-                          style={{ background: colors[Math.floor(e.Average)] }}
-                        >
-                          {e.Average}
-                        </td>
-                        <td>
-                          {e.CurrentStreak > 2 && "🔥"}
-                          {e.CurrentStreak}
-                        </td>
-                      </tr>
-                    );
-                  }
-                })}
+                data.map((e, i) => (
+                  <tr key={i}>
+                    <td>
+                      <Link
+                        style={{ display: "block" }}
+                        to={`/user/${e.PhoneNumber}`}
+                      >
+                        {formatNumber(e.PhoneNumber)}
+                      </Link>
+                    </td>
+                    <td style={{ background: colors[Math.floor(e.Average)] }}>
+                      {e.Average}
+                    </td>
+                    <td>
+                      {e.CurrentStreak > 2 && "🔥"}
+                      {e.CurrentStreak}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
         </>

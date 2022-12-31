@@ -32,7 +32,6 @@ const User = () => {
       .finally(() => setInProgress(false));
   }, [user]);
 
-  console.log(data);
   return (
     <>
       <Header active="users" />
