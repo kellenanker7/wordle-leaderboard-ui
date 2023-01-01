@@ -28,6 +28,7 @@ const Wordle = () => {
       .finally(() => setInProgress(false));
   }, [wordle]);
 
+  console.log(data);
   return (
     <>
       <Header active="wordles" />
@@ -40,7 +41,10 @@ const Wordle = () => {
           <Container>
             <Row>
               <Col>
-                <h2>Wordle {data.PuzzleNumber}</h2>
+                <h2>
+                  Wordle {data.PuzzleNumber}
+                  <span className="small text-muted">&nbsp;{data.Answer}</span>
+                </h2>
               </Col>
             </Row>
           </Container>
