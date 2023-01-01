@@ -60,7 +60,7 @@ const Wordles = () => {
                       }}
                       to={`/wordle/${wordle.Id}`}
                     >
-                      {wordle.Answer}
+                      {wordle.Answer ? wordle.Answer : "🤫"}
                     </Link>
                   </td>
                 </tr>

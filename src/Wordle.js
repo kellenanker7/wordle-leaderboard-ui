@@ -42,7 +42,9 @@ const Wordle = () => {
               <Col>
                 <h2>
                   Wordle {data.PuzzleNumber}
-                  <span className="small text-muted">&nbsp;{data.Answer}</span>
+                  <span className="small text-muted">
+                    &nbsp;{data.Answer ? data.Answer : "🤫"}
+                  </span>
                 </h2>
               </Col>
             </Row>
