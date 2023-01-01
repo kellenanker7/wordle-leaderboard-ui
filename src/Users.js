@@ -36,32 +36,46 @@ const Users = () => {
         <Spinner animation="border" />
       ) : (
         <>
-          <Form
-            onSubmit={(e) => {
-              e.preventDefault();
-              navigate(`/user/${search}`);
-            }}
-            className="d-flex"
-          >
+          <Form className="d-flex">
             <Form.Control
               onChange={(e) => setSearch(e.target.value.replace(/[\D]/g, ""))}
               type="search"
-              placeholder="Jump to a user..."
+              placeholder="Search for a user..."
             />
           </Form>
           <Table striped bordered>
             <tbody>
-              {data.map((user, i) => {
-                return (
-                  <tr key={i}>
-                    <td>
-                      <Link style={{ display: "block" }} to={`/user/${user}`}>
-                        {formatNumber(user)}
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
+              {search
+                ? data
+                    .filter((u) => u.toString().startsWith(search))
+                    .map((user, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>
+                            <Link
+                              style={{ display: "block" }}
+                              to={`/user/${user}`}
+                            >
+                              {formatNumber(user)}
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })
+                : data.map((user, i) => {
+                    return (
+                      <tr key={i}>
+                        <td>
+                          <Link
+                            style={{ display: "block" }}
+                            to={`/user/${user}`}
+                          >
+                            {formatNumber(user)}
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
             </tbody>
           </Table>
         </>
