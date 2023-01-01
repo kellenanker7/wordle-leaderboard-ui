@@ -28,7 +28,6 @@ const Wordle = () => {
       .finally(() => setInProgress(false));
   }, [wordle]);
 
-  console.log(data);
   return (
     <>
       <Header active="wordles" />
