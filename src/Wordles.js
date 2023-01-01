@@ -18,7 +18,7 @@ const Wordles = () => {
     setError(false);
     setInProgress(true);
 
-    fetch(`${wordleApi}/today`)
+    fetch(`${wordleApi}/wordles`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -28,6 +28,7 @@ const Wordles = () => {
       .finally(() => setInProgress(false));
   }, []);
 
+  console.log(data);
   return (
     <>
       <Header active="wordles" />
@@ -54,18 +55,27 @@ const Wordles = () => {
           </Row>
           <Table striped bordered>
             <tbody>
-              {Array.from(
-                { length: 10 },
-                (_, i) => -1 * (i - data.PuzzleNumber)
-              ).map((wordle, i) => {
+              {data.map((wordle, i) => {
                 return (
                   <tr key={i}>
                     <td>
                       <Link
                         style={{ display: "block" }}
-                        to={`/wordle/${wordle}`}
+                        to={`/wordle/${wordle.Id}`}
                       >
-                        {wordle}
+                        {wordle.Id}
+                      </Link>
+                    </td>
+                    <td>
+                      <Link
+                        style={{
+                          display: "block",
+                          textDecoration: "none",
+                          color: "inherit",
+                        }}
+                        to={`/wordle/${wordle.Id}`}
+                      >
+                        {wordle.Answer}
                       </Link>
                     </td>
                   </tr>
