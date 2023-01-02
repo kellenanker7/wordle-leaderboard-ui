@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { formatNumber, wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
@@ -7,7 +7,6 @@ import Form from "react-bootstrap/Form";
 import Header from "./Header";
 
 const Users = () => {
-  const navigate = useNavigate();
   const [search, setSearch] = useState();
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
