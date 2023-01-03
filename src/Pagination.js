@@ -4,7 +4,7 @@ const CustomPagination = ({ page, pageSize, dataLength, setPage }) => {
   const numberOfPages = Math.floor(dataLength / pageSize);
 
   return (
-    <Pagination>
+    <Pagination style={{ marginBottom: 0 }}>
       {page > 0 ? (
         <>
           <Pagination.First onClick={() => setPage(0)} />
