@@ -43,20 +43,17 @@ const User = () => {
         <>
           <Container>
             <Row>
-              <Col>
-                <h2>
-                  {formatName(data.CallerName) ||
-                    formatNumber(data.PhoneNumber)}
-                  {data.CurrentStreak > 2 && (
-                    <>
-                      &nbsp;🔥
-                      <span className="small text-muted">
-                        {data.CurrentStreak}
-                      </span>
-                    </>
-                  )}
-                </h2>
-              </Col>
+              <h2>
+                {formatName(data.CallerName) || formatNumber(data.PhoneNumber)}
+                {data.CurrentStreak > 2 && (
+                  <>
+                    &nbsp;🔥
+                    <span className="small text-muted">
+                      {data.CurrentStreak}
+                    </span>
+                  </>
+                )}
+              </h2>
             </Row>
             <Row>
               <Col className="text-muted">

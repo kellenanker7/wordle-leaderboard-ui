@@ -4,11 +4,14 @@ import { wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Header from "./Header";
+import CustomPagination from "./Pagination";
 
 const Wordles = () => {
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
+  const pageSize = 10;
 
   useEffect(() => {
     setError(false);
@@ -32,31 +35,41 @@ const Wordles = () => {
       ) : inProgress ? (
         <Spinner animation="border" />
       ) : (
-        <Table striped bordered>
-          <thead>
-            <tr>
-              <th>Wordle</th>
-              <th>Answer</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((wordle, i) => {
-              return (
-                <tr key={i}>
-                  <td>
-                    <Link
-                      style={{ display: "block" }}
-                      to={`/wordle/${wordle.Id}`}
-                    >
-                      {wordle.Id}
-                    </Link>
-                  </td>
-                  <td>{wordle.Answer ? wordle.Answer : "🤫"}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+        <>
+          <CustomPagination
+            page={page}
+            pageSize={pageSize}
+            dataLength={data.length}
+            setPage={setPage}
+          />
+          <Table striped bordered>
+            <thead>
+              <tr>
+                <th>Wordle</th>
+                <th>Answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data
+                .slice(page * pageSize, (page + 1) * pageSize)
+                .map((e, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>
+                        <Link
+                          style={{ display: "block" }}
+                          to={`/wordle/${e.Id}`}
+                        >
+                          {e.Id}
+                        </Link>
+                      </td>
+                      <td>{e.Answer ? e.Answer : "🤫"}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </Table>
+        </>
       )}
     </>
   );
