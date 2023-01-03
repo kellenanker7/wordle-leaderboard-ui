@@ -51,18 +51,7 @@ const Wordles = () => {
                       {wordle.Id}
                     </Link>
                   </td>
-                  <td>
-                    <Link
-                      style={{
-                        display: "block",
-                        textDecoration: "none",
-                        color: "inherit",
-                      }}
-                      to={`/wordle/${wordle.Id}`}
-                    >
-                      {wordle.Answer ? wordle.Answer : "🤫"}
-                    </Link>
-                  </td>
+                  <td>{wordle.Answer ? wordle.Answer : "🤫"}</td>
                 </tr>
               );
             })}
