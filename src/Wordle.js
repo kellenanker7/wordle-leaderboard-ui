@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { colors, formatNumber, formatName, wordleApi } from "./Constants.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
+import Popover from "react-bootstrap/Popover";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Header from "./Header";
 
 const Wordle = () => {
@@ -43,6 +46,41 @@ const Wordle = () => {
                 Wordle {data.PuzzleNumber}
                 <span className="small text-muted">
                   &nbsp;{data.Answer ? data.Answer : "🤫"}
+                  {data.Answer && data.Definitions.length > 0 && (
+                    <>
+                      &nbsp;
+                      <OverlayTrigger
+                        trigger="click"
+                        placement="bottom"
+                        overlay={
+                          <Popover>
+                            <Popover.Header as="h3">Definitions</Popover.Header>
+                            <Popover.Body>
+                              <table>
+                                <tbody>
+                                  {data.Definitions &&
+                                    data.Definitions.map((e, i) => (
+                                      <tr key={i}>
+                                        <td>{e.part_of_speech}</td>
+                                        <td>
+                                          <ul>
+                                            {e.definitions.map((n, m) => (
+                                              <li key={m}>{n}</li>
+                                            ))}
+                                          </ul>
+                                        </td>
+                                      </tr>
+                                    ))}
+                                </tbody>
+                              </table>
+                            </Popover.Body>
+                          </Popover>
+                        }
+                      >
+                        <FontAwesomeIcon icon={faCircleQuestion} size="xs" />
+                      </OverlayTrigger>
+                    </>
+                  )}
                 </span>
               </h2>
             </Row>
