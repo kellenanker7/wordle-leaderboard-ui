@@ -66,7 +66,7 @@ const Wordle = () => {
                           style={{ display: "block" }}
                           to={`/user/${e.PhoneNumber}`}
                         >
-                          {formatNumber(e.PhoneNumber)}
+                          {e.CallerName || formatNumber(e.PhoneNumber)}
                         </Link>
                       </td>
                       <td

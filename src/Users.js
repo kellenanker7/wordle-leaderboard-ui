@@ -37,7 +37,7 @@ const Users = () => {
         <>
           <Form className="d-flex">
             <Form.Control
-              onChange={(e) => setSearch(e.target.value.replace(/[\D]/g, ""))}
+              onChange={(e) => setSearch(e.target.value)}
               type="search"
               placeholder="Search for a user..."
             />
@@ -53,9 +53,10 @@ const Users = () => {
                           <td>
                             <Link
                               style={{ display: "block" }}
-                              to={`/user/${user}`}
+                              to={`/user/${user.PhoneNumber}`}
                             >
-                              {formatNumber(user)}
+                              {user.CallerName ||
+                                formatNumber(data.PhoneNumber)}
                             </Link>
                           </td>
                         </tr>
@@ -67,9 +68,9 @@ const Users = () => {
                         <td>
                           <Link
                             style={{ display: "block" }}
-                            to={`/user/${user}`}
+                            to={`/user/${user.PhoneNumber}`}
                           >
-                            {formatNumber(user)}
+                            {user.CallerName || formatNumber(data.PhoneNumber)}
                           </Link>
                         </td>
                       </tr>

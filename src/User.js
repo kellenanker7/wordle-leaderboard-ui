@@ -45,7 +45,7 @@ const User = () => {
             <Row>
               <Col>
                 <h2>
-                  {formatNumber(user)}
+                  {data.CallerName || formatNumber(data.PhoneNumber)}
                   {data.CurrentStreak > 2 && (
                     <>
                       &nbsp;🔥
