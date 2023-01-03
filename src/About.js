@@ -24,21 +24,30 @@ const About = () => {
           </p>
         </Row>
         <Row>
-          <h2>Acknoledgements</h2>
+          <h2>Acknowledgements</h2>
           <p>
             Wordle definitions powered by{" "}
-            <a target="blank" href="https://dictionaryapi.dev/">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://dictionaryapi.dev/"
+            >
               Free Dictionary API
             </a>
             . Wordle archive powered by{" "}
             <a
-              target="blank"
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://wordfinder.yourdictionary.com/wordle/answers/"
             >
               WordFinder
             </a>
             . Timezone data powered by{" "}
-            <a target="blank" href="https://worldtimeapi.org">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://worldtimeapi.org"
+            >
               WorldTimeAPI
             </a>
             .
