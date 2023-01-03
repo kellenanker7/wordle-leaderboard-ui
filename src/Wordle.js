@@ -107,8 +107,8 @@ const Wordle = () => {
                     </td>
                     <td
                       style={{
-                        background: wordle.Victory
-                          ? colors[wordle.Guesses - 1]
+                        background: e.Victory
+                          ? colors[e.Guesses - 1]
                           : colors[7],
                       }}
                     >
