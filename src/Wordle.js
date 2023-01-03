@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { colors, formatNumber, wordleApi } from "./Constants.js";
+import { colors, formatNumber, formatName, wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
@@ -66,7 +66,8 @@ const Wordle = () => {
                           style={{ display: "block" }}
                           to={`/user/${e.PhoneNumber}`}
                         >
-                          {e.CallerName || formatNumber(e.PhoneNumber)}
+                          {formatName(e.CallerName) ||
+                            formatNumber(e.PhoneNumber)}
                         </Link>
                       </td>
                       <td

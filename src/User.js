@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { colors, formatNumber, wordleApi } from "./Constants.js";
+import { colors, formatNumber, formatName, wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
@@ -45,7 +45,8 @@ const User = () => {
             <Row>
               <Col>
                 <h2>
-                  {data.CallerName || formatNumber(data.PhoneNumber)}
+                  {formatName(data.CallerName) ||
+                    formatNumber(data.PhoneNumber)}
                   {data.CurrentStreak > 2 && (
                     <>
                       &nbsp;🔥

@@ -14,3 +14,13 @@ export const formatNumber = (n) =>
   `(${String(n).substring(0, 3)}) ${String(n).substring(3, 6)}-${String(
     n
   ).substring(6)}`;
+
+export const formatName = (n) => {
+  return n
+    ? String(n)
+        .split(" ")[0]
+        .replace(/\w*/, function (txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        })
+    : null;
+};

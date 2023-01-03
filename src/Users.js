@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { formatNumber, wordleApi } from "./Constants.js";
+import { formatNumber, formatName, wordleApi } from "./Constants.js";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
@@ -55,7 +55,7 @@ const Users = () => {
                               style={{ display: "block" }}
                               to={`/user/${user.PhoneNumber}`}
                             >
-                              {user.CallerName ||
+                              {formatName(user.CallerName) ||
                                 formatNumber(data.PhoneNumber)}
                             </Link>
                           </td>
@@ -70,7 +70,8 @@ const Users = () => {
                             style={{ display: "block" }}
                             to={`/user/${user.PhoneNumber}`}
                           >
-                            {user.CallerName || formatNumber(data.PhoneNumber)}
+                            {formatName(user.CallerName) ||
+                              formatNumber(data.PhoneNumber)}
                           </Link>
                         </td>
                       </tr>
