@@ -52,11 +52,12 @@ const Wordle = () => {
                       <OverlayTrigger
                         trigger="click"
                         placement="bottom"
+                        rootClose
                         overlay={
                           <Popover>
                             <Popover.Header as="h3">Definitions</Popover.Header>
                             <Popover.Body>
-                              <table>
+                              <Table>
                                 <tbody>
                                   {data.Definitions &&
                                     data.Definitions.map((e, i) => (
@@ -72,7 +73,7 @@ const Wordle = () => {
                                       </tr>
                                     ))}
                                 </tbody>
-                              </table>
+                              </Table>
                             </Popover.Body>
                           </Popover>
                         }

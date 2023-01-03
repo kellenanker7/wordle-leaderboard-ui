@@ -13,18 +13,24 @@ const About = () => {
           <h2>Leaderboard</h2>
           <p>
             The <Link to="/leaderboard">leaderboard</Link> ranks users by their
-            average number of guesses taken to solve Wordles.
-          </p>
-          <p>
-            Users must solve at least three Wordles over the given time period
-            to earn a place on the leaderboard.
+            average number of guesses taken to solve Wordles. Users must solve
+            at least three Wordles over the given time period to earn a place on
+            the leaderboard.
           </p>
           <p>
             Users achieve a "hot streak" (🔥) after successfuly completing three
-            consecutive Wordles.
+            consecutive Wordles. Skipping a Wordle snaps a streak, as does
+            failing to solve a Wordle.
           </p>
+        </Row>
+        <Row>
+          <h2>Wordle definitions</h2>
           <p>
-            Skipping a Wordle snaps a streak, as does failing to solve a Wordle.
+            Wordle definitions powered by{" "}
+            <a target="blank" href="https://dictionaryapi.dev/">
+              Free Dictionary API
+            </a>
+            .
           </p>
         </Row>
         <Row>
