@@ -15,9 +15,10 @@ const limitOpts = [
 
 const Leaderboard = () => {
   const [data, setData] = useState([]);
+  const [today, setToday] = useState(0);
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
-  const [limit, setLimit] = useState({ val: 30, txt: "month" });
+  const [limit, setLimit] = useState(limitOpts[0]);
 
   useEffect(() => {
     setError(false);
@@ -26,6 +27,14 @@ const Leaderboard = () => {
     fetch(`${wordleApi}/leaderboard`)
       .then((res) => res.json())
       .then((data) => setData(data))
+      .catch((e) => {
+        setError(true);
+        console.error(e);
+      });
+
+    fetch(`${wordleApi}/today`)
+      .then((res) => res.json())
+      .then((today) => setToday(today))
       .catch((e) => {
         setError(true);
         console.error(e);
@@ -66,29 +75,40 @@ const Leaderboard = () => {
             </thead>
             <tbody>
               {data &&
-                data.map((e, i) => (
-                  <tr key={i}>
-                    <td>
-                      <Link
-                        style={{ display: "block" }}
-                        to={`/user/${e.PhoneNumber}`}
-                      >
-                        {formatName(e.CallerName) ||
-                          formatNumber(e.PhoneNumber)}
-                      </Link>
-                    </td>
-                    <td style={{ background: colors[Math.floor(e.Average)] }}>
-                      {e.Average}
-                    </td>
-                    <td>
-                      {e.CurrentStreak > 2
-                        ? `🔥${e.CurrentStreak}`
-                        : e.CurrentStreak < 1
-                        ? "-"
-                        : e.CurrentStreak}
-                    </td>
-                  </tr>
-                ))}
+                data
+                  .filter((e) => {
+                    if (limit.val < 1 && e.Wins.length >= 3) {
+                      return true;
+                    }
+                    const lastNWins = e.Wins.slice(0, limit.val);
+                    return (
+                      lastNWins.length >= 3 &&
+                      lastNWins[2] > today.PuzzleNumber - limit.val
+                    );
+                  })
+                  .map((e, i) => (
+                    <tr key={i}>
+                      <td>
+                        <Link
+                          style={{ display: "block" }}
+                          to={`/user/${e.PhoneNumber}`}
+                        >
+                          {formatName(e.CallerName) ||
+                            formatNumber(e.PhoneNumber)}
+                        </Link>
+                      </td>
+                      <td style={{ background: colors[Math.floor(e.Average)] }}>
+                        {e.Average}
+                      </td>
+                      <td>
+                        {e.CurrentStreak > 2
+                          ? `🔥${e.CurrentStreak}`
+                          : e.CurrentStreak < 1
+                          ? "-"
+                          : e.CurrentStreak}
+                      </td>
+                    </tr>
+                  ))}
             </tbody>
           </Table>
         </>
