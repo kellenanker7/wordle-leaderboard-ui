@@ -23,7 +23,7 @@ const Leaderboard = () => {
     setError(false);
     setInProgress(true);
 
-    fetch(`${wordleApi}/leaderboard?limit=${limit.val}`)
+    fetch(`${wordleApi}/leaderboard`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((e) => {
@@ -31,7 +31,7 @@ const Leaderboard = () => {
         console.error(e);
       })
       .finally(() => setInProgress(false));
-  }, [limit]);
+  }, []);
 
   return (
     <>
