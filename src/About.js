@@ -20,8 +20,8 @@ const About = () => {
             to earn a place on the leaderboard.
           </p>
           <p>
-            Users achieve a "hot streak" (denoted by 🔥) after successfuly
-            completing three consecutive Wordles.
+            Users achieve a "hot streak" (🔥) after successfuly completing three
+            consecutive Wordles.
           </p>
           <p>
             Skipping a Wordle snaps a streak, as does failing to solve a Wordle.
