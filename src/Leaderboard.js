@@ -14,7 +14,7 @@ const limitOpts = [
 ];
 
 const Leaderboard = () => {
-  const [data, setData] = useState([]);
+  const [leaderboard, setLeaderboard] = useState([]);
   const [today, setToday] = useState(0);
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
@@ -24,17 +24,14 @@ const Leaderboard = () => {
     setError(false);
     setInProgress(true);
 
-    fetch(`${wordleApi}/leaderboard`)
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((e) => {
-        setError(true);
-        console.error(e);
-      });
-
-    fetch(`${wordleApi}/today`)
-      .then((res) => res.json())
-      .then((today) => setToday(today))
+    Promise.all([
+      fetch(`${wordleApi}/leaderboard`).then((res) => res.json()),
+      fetch(`${wordleApi}/today`).then((res) => res.json()),
+    ])
+      .then(([leaderboard, today]) => {
+        setLeaderboard(leaderboard);
+        setToday(today.PuzzleNumber);
+      })
       .catch((e) => {
         setError(true);
         console.error(e);
@@ -74,16 +71,15 @@ const Leaderboard = () => {
               </tr>
             </thead>
             <tbody>
-              {data &&
-                data
+              {leaderboard &&
+                leaderboard
                   .filter((e) => {
                     if (limit.val < 1 && e.Wins.length >= 3) {
                       return true;
                     }
                     const lastNWins = e.Wins.slice(0, limit.val);
                     return (
-                      lastNWins.length >= 3 &&
-                      lastNWins[2] > today.PuzzleNumber - limit.val
+                      lastNWins.length >= 3 && lastNWins[2] > today - limit.val
                     );
                   })
                   .map((e, i) => (
