@@ -24,11 +24,22 @@ const About = () => {
           </p>
         </Row>
         <Row>
-          <h2>Wordle definitions</h2>
+          <h2>Acknoledgements</h2>
           <p>
             Wordle definitions powered by{" "}
             <a target="blank" href="https://dictionaryapi.dev/">
               Free Dictionary API
+            </a>
+            . Wordle archive powered by{" "}
+            <a
+              target="blank"
+              href="https://wordfinder.yourdictionary.com/wordle/answers/"
+            >
+              WordFinder
+            </a>
+            . Timezone data powered by{" "}
+            <a target="blank" href="https://worldtimeapi.org">
+              WorldTimeAPI
             </a>
             .
           </p>
