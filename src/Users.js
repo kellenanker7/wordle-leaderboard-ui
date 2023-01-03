@@ -46,7 +46,11 @@ const Users = () => {
             <tbody>
               {search
                 ? data
-                    .filter((u) => u.toString().startsWith(search))
+                    .filter((u) =>
+                      u.CallerName.toString()
+                        .toLowerCase()
+                        .startsWith(search.toLowerCase())
+                    )
                     .map((user, i) => {
                       return (
                         <tr key={i}>
