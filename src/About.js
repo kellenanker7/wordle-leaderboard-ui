@@ -34,14 +34,11 @@ const About = () => {
             users' proficiency at solving Wordles:
           </p>
           <div>
-            {Object.keys(colors).map((e) => (
-              <div
-                key={e}
-                style={{ background: colors[e], textAlign: "center" }}
-              >
-                {e <= 1 && "Solved in 1 guess"}
-                {e > 1 && e < 7 && `Solved in ${e} guesses`}
-                {e >= 7 && "Failed to solve"}
+            {colors.map((e, i) => (
+              <div key={i} style={{ background: e, textAlign: "center" }}>
+                {i <= 1 && "Solved in 1 guess"}
+                {i > 1 && i < 7 && `Solved in ${i} guesses`}
+                {i >= 7 && "Failed to solve"}
               </div>
             ))}
           </div>

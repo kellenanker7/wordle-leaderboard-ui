@@ -93,7 +93,11 @@ const Leaderboard = () => {
                             formatNumber(e.PhoneNumber)}
                         </Link>
                       </td>
-                      <td style={{ background: colors[Math.floor(e.Average)] }}>
+                      <td
+                        style={{
+                          background: colors[Math.floor(e.Average) - 1],
+                        }}
+                      >
                         {e.Average}
                       </td>
                       <td>

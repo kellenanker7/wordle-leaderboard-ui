@@ -96,9 +96,9 @@ const User = () => {
                     </td>
                     <td
                       style={{
-                        background: !wordle.Victory
-                          ? "#F6BDC0"
-                          : colors[wordle.Guesses],
+                        background: wordle.Victory
+                          ? colors[wordle.Guesses - 1]
+                          : colors[7],
                       }}
                     >
                       {wordle.Guesses}

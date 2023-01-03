@@ -5,7 +5,7 @@ import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+// import Col from "react-bootstrap/Col";
 import Header from "./Header";
 
 const Wordle = () => {
@@ -39,14 +39,12 @@ const Wordle = () => {
         <>
           <Container>
             <Row>
-              <Col>
-                <h2>
-                  Wordle {data.PuzzleNumber}
-                  <span className="small text-muted">
-                    &nbsp;{data.Answer ? data.Answer : "🤫"}
-                  </span>
-                </h2>
-              </Col>
+              <h2>
+                Wordle {data.PuzzleNumber}
+                <span className="small text-muted">
+                  &nbsp;{data.Answer ? data.Answer : "🤫"}
+                </span>
+              </h2>
             </Row>
           </Container>
           <Table style={{ textAlign: "left" }} bordered>
@@ -58,30 +56,28 @@ const Wordle = () => {
             </thead>
             <tbody>
               {data.Users &&
-                data.Users.map((e, i) => {
-                  return (
-                    <tr key={i}>
-                      <td>
-                        <Link
-                          style={{ display: "block" }}
-                          to={`/user/${e.PhoneNumber}`}
-                        >
-                          {formatName(e.CallerName) ||
-                            formatNumber(e.PhoneNumber)}
-                        </Link>
-                      </td>
-                      <td
-                        style={{
-                          background: !e.Victory
-                            ? colors[7]
-                            : colors[e.Guesses],
-                        }}
+                data.Users.map((e, i) => (
+                  <tr key={i}>
+                    <td>
+                      <Link
+                        style={{ display: "block" }}
+                        to={`/user/${e.PhoneNumber}`}
                       >
-                        {e.Guesses}
-                      </td>
-                    </tr>
-                  );
-                })}
+                        {formatName(e.CallerName) ||
+                          formatNumber(e.PhoneNumber)}
+                      </Link>
+                    </td>
+                    <td
+                      style={{
+                        background: wordle.Victory
+                          ? colors[wordle.Guesses - 1]
+                          : colors[7],
+                      }}
+                    >
+                      {e.Guesses}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
         </>
