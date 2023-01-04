@@ -51,7 +51,7 @@ const Wordles = () => {
         <Spinner animation="border" />
       ) : (
         <>
-          <Row>
+          <Row style={{ maxWidth: "100%" }}>
             <Col className="col-8" style={{ paddingRight: 0 }}>
               <Form className="d-flex">
                 <Form.Control
