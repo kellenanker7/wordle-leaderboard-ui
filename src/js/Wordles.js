@@ -52,7 +52,7 @@ const Wordles = () => {
       ) : (
         <>
           <Row>
-            <Col>
+            <Col className="col-8" style={{ paddingRight: 0 }}>
               <Form className="d-flex">
                 <Form.Control
                   onChange={(e) => setSearch(e.target.value)}
@@ -61,7 +61,7 @@ const Wordles = () => {
                 />
               </Form>
             </Col>
-            <Col>
+            <Col className="col-4" style={{ paddingLeft: 0 }}>
               <CustomPagination
                 page={page}
                 pageSize={pageSize}
