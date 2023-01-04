@@ -6,6 +6,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import CustomPagination from "./Pagination";
 import Header from "./Header";
 
 const User = () => {
@@ -17,6 +18,8 @@ const User = () => {
   });
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
+  const [page, setPage] = useState(0);
+  const pageSize = 10;
 
   useEffect(() => {
     setError(false);
@@ -32,6 +35,7 @@ const User = () => {
       .finally(() => setInProgress(false));
   }, [user]);
 
+  console.log(data.Puzzles);
   return (
     <>
       <Header active="users" />
@@ -72,7 +76,7 @@ const User = () => {
               </Col>
             </Row>
           </Container>
-          <Table bordered>
+          <Table bordered style={{ marginBottom: 0 }}>
             <thead>
               <tr>
                 <th className="col col-7">Wordle</th>
@@ -80,8 +84,8 @@ const User = () => {
               </tr>
             </thead>
             <tbody>
-              {data.Puzzles.map((wordle, i) => {
-                return (
+              {data.Puzzles.slice(page * pageSize, (page + 1) * pageSize).map(
+                (wordle, i) => (
                   <tr key={i}>
                     <td>
                       <Link
@@ -101,10 +105,22 @@ const User = () => {
                       {wordle.Guesses}
                     </td>
                   </tr>
-                );
-              })}
+                )
+              )}
             </tbody>
           </Table>
+          <Container>
+            <Row>
+              <Col style={{ paddingLeft: 0 }}>
+                <CustomPagination
+                  page={page}
+                  pageSize={pageSize}
+                  dataLength={data.Puzzles.length}
+                  setPage={setPage}
+                />
+              </Col>
+            </Row>
+          </Container>
         </>
       )}
     </>
