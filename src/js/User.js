@@ -35,7 +35,6 @@ const User = () => {
       .finally(() => setInProgress(false));
   }, [user]);
 
-  console.log(data.Puzzles);
   return (
     <>
       <Header active="users" />
