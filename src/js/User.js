@@ -95,7 +95,7 @@ const User = () => {
                       style={{
                         background: wordle.Victory
                           ? colors[wordle.Guesses - 1]
-                          : colors[7],
+                          : colors[6],
                       }}
                     >
                       {wordle.Guesses}

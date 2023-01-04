@@ -3,20 +3,30 @@ import { Link } from "react-router-dom";
 import { wordleApi } from "./Constants";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
-import Dropdown from "react-bootstrap/Dropdown";
+import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Header from "./Header";
 import CustomPagination from "./Pagination";
 
-const limitOpts = [10, 25, 50];
+const WordleRow = ({ id, answer }) => (
+  <tr>
+    <td>
+      <Link style={{ display: "block" }} to={`/wordle/${id}`}>
+        {id}
+      </Link>
+    </td>
+    <td>{answer ? answer : "🤫"}</td>
+  </tr>
+);
 
 const Wordles = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
+  const [search, setSearch] = useState();
+  const pageSize = 10;
 
   useEffect(() => {
     setError(false);
@@ -43,28 +53,15 @@ const Wordles = () => {
         <>
           <Row>
             <Col>
-              <Dropdown>
-                <Dropdown.Toggle size="md" variant="Primary">
-                  {`Show ${pageSize}`}
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  {limitOpts.map((e, i) => {
-                    return (
-                      <Dropdown.Item
-                        key={i}
-                        onClick={() => {
-                          setPage(0);
-                          setPageSize(e);
-                        }}
-                      >
-                        {e}
-                      </Dropdown.Item>
-                    );
-                  })}
-                </Dropdown.Menu>
-              </Dropdown>
+              <Form className="d-flex">
+                <Form.Control
+                  onChange={(e) => setSearch(e.target.value)}
+                  type="search"
+                  placeholder="Search for a Wordle..."
+                />
+              </Form>
             </Col>
-            <Col className="offset-4">
+            <Col>
               <CustomPagination
                 page={page}
                 pageSize={pageSize}
@@ -81,23 +78,23 @@ const Wordles = () => {
               </tr>
             </thead>
             <tbody>
-              {data
-                .slice(page * pageSize, (page + 1) * pageSize)
-                .map((e, i) => {
-                  return (
-                    <tr key={i}>
-                      <td>
-                        <Link
-                          style={{ display: "block" }}
-                          to={`/wordle/${e.Id}`}
-                        >
-                          {e.Id}
-                        </Link>
-                      </td>
-                      <td>{e.Answer ? e.Answer : "🤫"}</td>
-                    </tr>
-                  );
-                })}
+              {search
+                ? data
+                    .filter(
+                      (w) =>
+                        w.Id.toString().startsWith(search) ||
+                        w.Answer.toString()
+                          .toLowerCase()
+                          .startsWith(search.toLowerCase())
+                    )
+                    .map((e, i) => (
+                      <WordleRow key={i} id={e.Id} answer={e.Answer} />
+                    ))
+                : data
+                    .slice(page * pageSize, (page + 1) * pageSize)
+                    .map((e, i) => (
+                      <WordleRow key={i} id={e.Id} answer={e.Answer} />
+                    ))}
             </tbody>
           </Table>
         </>
