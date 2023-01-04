@@ -39,7 +39,7 @@ const About = () => {
                 {colors.map((e, i) => (
                   <tr key={i} style={{ background: e, textAlign: "center" }}>
                     <td>
-                      {i == 0 && "Solved in 1 guess"}
+                      {i === 0 && "Solved in 1 guess"}
                       {i >= 1 && i <= 5 && `Solved in ${i + 1} guesses`}
                       {i > 5 && "Failed to solve"}
                     </td>
