@@ -3,15 +3,20 @@ import { Link } from "react-router-dom";
 import { wordleApi } from "./Constants";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
+import Dropdown from "react-bootstrap/Dropdown";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Header from "./Header";
 import CustomPagination from "./Pagination";
+
+const limitOpts = [10, 25, 50];
 
 const Wordles = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
-  const pageSize = 10;
 
   useEffect(() => {
     setError(false);
@@ -36,12 +41,38 @@ const Wordles = () => {
         <Spinner animation="border" />
       ) : (
         <>
-          <CustomPagination
-            page={page}
-            pageSize={pageSize}
-            dataLength={data.length}
-            setPage={setPage}
-          />
+          <Row>
+            <Col>
+              <Dropdown>
+                <Dropdown.Toggle size="md" variant="Primary">
+                  {`Show ${pageSize}`}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {limitOpts.map((e, i) => {
+                    return (
+                      <Dropdown.Item
+                        key={i}
+                        onClick={() => {
+                          setPage(0);
+                          setPageSize(e);
+                        }}
+                      >
+                        {e}
+                      </Dropdown.Item>
+                    );
+                  })}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+            <Col className="offset-4">
+              <CustomPagination
+                page={page}
+                pageSize={pageSize}
+                dataLength={data.length}
+                setPage={setPage}
+              />
+            </Col>
+          </Row>
           <Table striped bordered>
             <thead>
               <tr>
