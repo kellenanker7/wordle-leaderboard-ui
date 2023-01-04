@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { colors, formatNumber, formatName, wordleApi } from "./Constants.js";
+import { colors, formatNumber, formatName, wordleApi } from "./Constants";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Dropdown from "react-bootstrap/Dropdown";

@@ -1,4 +1,4 @@
-import Today from "./Today.js";
+import Today from "./Today";
 import "./App.css";
 
 function App() {

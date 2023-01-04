@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { wordleApi } from "./Constants.js";
+import { wordleApi } from "./Constants";
 import Spinner from "react-bootstrap/Spinner";
-import Header from "./Header.js";
+import Header from "./Header";
 
 const Today = () => {
   const navigate = useNavigate();

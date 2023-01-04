@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { colors, formatNumber, formatName, wordleApi } from "./Constants.js";
+import { colors, formatNumber, formatName, wordleApi } from "./Constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import Table from "react-bootstrap/Table";
