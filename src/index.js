@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
-import Leaderboard from "./Leaderboard";
-import Today from "./Today";
-import Users from "./Users";
-import User from "./User";
-import Wordles from "./Wordles";
-import Wordle from "./Wordle";
-import About from "./About";
 import reportWebVitals from "./reportWebVitals";
+import Leaderboard from "./js/Leaderboard";
+import Today from "./js/Today";
+import Users from "./js/Users";
+import User from "./js/User";
+import Wordles from "./js/Wordles";
+import Wordle from "./js/Wordle";
+import About from "./js/About";
 
 // Importing the Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
