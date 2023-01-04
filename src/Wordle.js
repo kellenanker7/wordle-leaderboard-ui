@@ -110,7 +110,7 @@ const Wordle = () => {
                       style={{
                         background: e.Victory
                           ? colors[e.Guesses - 1]
-                          : colors[7],
+                          : colors[6],
                       }}
                     >
                       {e.Guesses}
