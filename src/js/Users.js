@@ -4,13 +4,18 @@ import { formatNumber, formatName, wordleApi } from "./Constants";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Header from "./Header";
+import CustomPagination from "./Pagination";
 
 const Users = () => {
   const [search, setSearch] = useState();
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
+  const pageSize = 10;
 
   useEffect(() => {
     setError(false);
@@ -26,6 +31,7 @@ const Users = () => {
       .finally(() => setInProgress(false));
   }, []);
 
+  const needsPagination = data.length > pageSize;
   return (
     <>
       <Header active="users" />
@@ -35,13 +41,30 @@ const Users = () => {
         <Spinner animation="border" />
       ) : (
         <>
-          <Form className="d-flex">
-            <Form.Control
-              onChange={(e) => setSearch(e.target.value)}
-              type="search"
-              placeholder="Search for a user..."
-            />
-          </Form>
+          <Row>
+            <Col
+              className={needsPagination ? "col-8" : "col"}
+              style={needsPagination ? { paddingRight: 0 } : {}}
+            >
+              <Form className="d-flex">
+                <Form.Control
+                  onChange={(e) => setSearch(e.target.value)}
+                  type="search"
+                  placeholder="Search for a user..."
+                />
+              </Form>
+            </Col>
+            {needsPagination && (
+              <Col className="col-4" style={{ paddingLeft: 0 }}>
+                <CustomPagination
+                  page={page}
+                  pageSize={pageSize}
+                  dataLength={data.length}
+                  setPage={setPage}
+                />
+              </Col>
+            )}
+          </Row>
           <Table striped bordered>
             <tbody>
               {search

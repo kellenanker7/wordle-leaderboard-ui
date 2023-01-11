@@ -57,6 +57,15 @@ const About = () => {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
+                  href="https://www.nytimes.com/games/wordle/index.html"
+                >
+                  Wordle
+                </a>
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
                   href="https://dictionaryapi.dev/"
                 >
                   Free Dictionary API
