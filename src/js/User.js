@@ -19,7 +19,7 @@ const User = () => {
   const [error, setError] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [page, setPage] = useState(0);
-  const pageSize = 10;
+  const pageSize = 7;
 
   useEffect(() => {
     setError(false);

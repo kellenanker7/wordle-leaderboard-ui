@@ -67,6 +67,7 @@ const Wordles = () => {
                 pageSize={pageSize}
                 dataLength={data.length}
                 setPage={setPage}
+                disabled={search}
               />
             </Col>
           </Row>
