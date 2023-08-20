@@ -10,13 +10,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "bootstrap": "^5.2.3",
+    "caniuse-lite": "^1.0.30001522",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.0",
     "react-scripts": "5.0.1",
-    "sls": "^0.1.0",
-    "web-vitals": "^2.1.4"
+    "serverless": "^3.0.0"
   },
   "scripts": {
     "all": "npm run build && npm run deploy",

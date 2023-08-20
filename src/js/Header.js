@@ -29,12 +29,6 @@ const Header = ({ active }) => {
           >
             Wordles
           </Nav.Link>
-          <Nav.Link
-            className={active === "users" ? "active" : ""}
-            href="/users"
-          >
-            Users
-          </Nav.Link>
         </Nav>
         <Nav>
           <Nav.Link

@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import { colors } from "./Constants";
 import Header from "./Header";
 import Container from "react-bootstrap/Container";
-import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -21,32 +19,10 @@ const About = () => {
               place on the leaderboard.
             </p>
             <p>
-              Users achieve a "hot streak" (🔥) after successfuly completing
+              Users achieve a "hot streak" (🔥) after successfully completing
               three consecutive Wordles. Skipping a Wordle snaps a streak, as
               does failing to solve a Wordle.
             </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <h2>Color scheme</h2>
-            <p>
-              The following color scheme is used throughout this app to denote
-              users' proficiency at solving Wordles:
-            </p>
-            <Table>
-              <tbody>
-                {colors.map((e, i) => (
-                  <tr key={i} style={{ background: e, textAlign: "center" }}>
-                    <td>
-                      {i === 0 && "Solved in 1 guess"}
-                      {i >= 1 && i <= 5 && `Solved in ${i + 1} guesses`}
-                      {i > 5 && "Failed to solve"}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
           </Col>
         </Row>
         <Row>
