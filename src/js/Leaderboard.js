@@ -51,9 +51,7 @@ const Leaderboard = () => {
               leaderboard
                 .filter((e) => {
                   const lastNWins = e.Wins.slice(0, 7);
-                  return (
-                    lastNWins.length >= 3 && lastNWins[2] > today - 7
-                  );
+                  return lastNWins.length >= 3 && lastNWins[2] > today - 7;
                 })
                 .map((e, i) => (
                   <tr key={i}>
