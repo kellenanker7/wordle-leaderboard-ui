@@ -61,7 +61,10 @@ const Wordle = () => {
                                 <tbody>
                                   {data.Definitions &&
                                     data.Definitions.map((e, i) => (
-                                      <tr key={i}>
+                                      <tr
+                                        key={i}
+                                        style={{ borderBottom: "hidden" }}
+                                      >
                                         <td>{e.part_of_speech}</td>
                                         <td>
                                           <ul>
